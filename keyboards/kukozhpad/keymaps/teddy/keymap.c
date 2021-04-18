@@ -108,7 +108,7 @@ typedef struct {
 } td_tap_t;
 
 enum {
-    PP_LAYR, // Our custom tap dance key; add any other tap dance keys to this enum
+    NL_LAYR, // Our custom tap dance key; add any other tap dance keys to this enum
     NL_BKSP
 };
 
@@ -134,9 +134,9 @@ void ql_reset(qk_tap_dance_state_t *state, void *user_data);
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base */
     [_BASE] = LAYOUT(
-        KC_P7,    KC_P8,    KC_P9,    TD(NL_BKSP),
+        KC_P7,    KC_P8,    KC_P9,    KC_BSPC,
         KC_P4,    KC_P5,    KC_P6,    KC_PPLS,
-        KC_P1,    KC_P2,    KC_P3,    TD(PP_LAYR),
+        KC_P1,    KC_P2,    KC_P3,    TD(NL_LAYR),
         KC_P0,    KC_PCMM,  KC_PDOT,  KC_PENT
     ),
     [_ADJ] = LAYOUT(
@@ -187,7 +187,7 @@ static td_tap_t ql_tap_state = {
 void ql_finished(qk_tap_dance_state_t *state, void *user_data) {
     ql_tap_state.state = cur_dance(state);
     switch (ql_tap_state.state) {
-        case TD_SINGLE_TAP: tap_code(KC_PMNS); break;
+        case TD_SINGLE_TAP: tap_code(KC_NUMLOCK); break;
         case TD_SINGLE_HOLD: layer_on(_FN); break;
         case TD_DOUBLE_TAP:
             // Check to see if the layer is already set
@@ -228,6 +228,6 @@ void ql_reset(qk_tap_dance_state_t *state, void *user_data) {
 
 // Associate our tap dance key with its functionality
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [PP_LAYR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
-    [NL_BKSP] = ACTION_TAP_DANCE_DOUBLE(KC_BSPC, KC_NUMLOCK)
+    [NL_LAYR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
+    // [NL_BKSP] = ACTION_TAP_DANCE_DOUBLE(KC_BSPC, KC_NUMLOCK)
 };
