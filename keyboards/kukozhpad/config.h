@@ -26,6 +26,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MANUFACTURER Uselessful
 #define PRODUCT      kukozhpad2
 #define DESCRIPTION In CringeCult we trust
+#define COMBO_COUNT 5
+#define COMBO_TERM 7
+#define TAPPING_TERM 127
 
 /* key matrix size */
 #define MATRIX_ROWS 4

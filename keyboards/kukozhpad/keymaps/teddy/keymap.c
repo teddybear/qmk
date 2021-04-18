@@ -58,27 +58,86 @@ void ql_reset(qk_tap_dance_state_t *state, void *user_data);
     QMKURL
 }; */
 
+enum combos {
+  PPLS,
+  PMNS,
+  PSLS,
+  PAST,
+  PEQL
+};
+
+const uint16_t PROGMEM pp_combo[] = {KC_P9, KC_P8, COMBO_END};
+const uint16_t PROGMEM pm_combo[] = {KC_P8, KC_P7, COMBO_END};
+const uint16_t PROGMEM ps_combo[] = {KC_P5, KC_P4, COMBO_END};
+const uint16_t PROGMEM pa_combo[] = {KC_P6, KC_P5, COMBO_END};
+const uint16_t PROGMEM pe_combo[] = {KC_P3, KC_P2, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+  [PPLS] = COMBO(pp_combo, KC_PPLS),
+  [PMNS] = COMBO(pm_combo, KC_PMNS),
+  [PSLS] = COMBO(ps_combo, KC_PSLS),
+  [PAST] = COMBO(pa_combo, KC_PAST),
+  [PEQL] = COMBO(pe_combo, KC_PEQL),
+};
+
+
+enum {
+    TD_TO_ADJ,
+    TD_TO_FN,
+    TD_TO_BASE,
+};
+
+// Tap Dance definitions
+qk_tap_dance_action_t tap_dance_actions[] = {
+    // Tap once for Escape, twice for Caps Lock
+    [TD_TO_ADJ] = ACTION_TAP_DANCE_LAYER_MOVE(KC_PMNS, _ADJ),
+    [TD_TO_FN] = ACTION_TAP_DANCE_LAYER_MOVE(KC_PEQL, _FN),
+    [TD_TO_BASE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_PPLS, _BASE),
+};
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base */
     [_BASE] = LAYOUT(
         KC_P7,    KC_P8,    KC_P9,    KC_BSPC,
         KC_P4,    KC_P5,    KC_P6,    KC_PPLS,
-        KC_P1,    KC_P2,    KC_P3,    TO(_ADJ),
+        KC_P1,    KC_P2,    KC_P3,    TD(TD_TO_ADJ),
         KC_P0,    KC_PCMM,  KC_PDOT,  KC_PENT
     ),
     [_ADJ] = LAYOUT(
         RGB_TOG,   RGB_MOD,  RGB_VAD,   KC_NUMLOCK,
         RGB_SAI,   RGB_VAI,  RGB_HUI,   KC_CAPS,
-        RGB_SAD,   KC_UP,    RGB_HUD,   TO(_FN),
+        RGB_SAD,   KC_UP,    RGB_HUD,   TD(TD_TO_FN),
         KC_LEFT,   KC_DOWN,  KC_RIGHT,  KC_RSFT
     ),
     [_FN] = LAYOUT(
         KC_INS,    KC_HOME,  KC_PGUP,   KC_LGUI,
         KC_DEL,    KC_END,   KC_PGDN,   KC_LCTRL,
-        KC_LSFT,   KC_UP,    KC_LALT,   TO(_BASE),
+        KC_LSFT,   KC_UP,    KC_LALT,   TD(TD_TO_BASE),
         KC_LEFT,   KC_DOWN,  KC_RIGHT,  KC_RSFT
     )
 };
+
+/*
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+[_BASE] = LAYOUT(
+    KC_P7,    KC_P8,    KC_P9,    KC_BSPC,
+    KC_P4,    KC_P5,    KC_P6,    KC_PPLS,
+    KC_P1,    KC_P2,    KC_P3,    TO(_ADJ),
+    KC_P0,    KC_PCMM,  KC_PDOT,  KC_PENT
+),
+[_ADJ] = LAYOUT(
+    RGB_TOG,   RGB_MOD,  RGB_VAD,   KC_NUMLOCK,
+    RGB_SAI,   RGB_VAI,  RGB_HUI,   KC_CAPS,
+    RGB_SAD,   KC_UP,    RGB_HUD,   TO(_FN),
+    KC_LEFT,   KC_DOWN,  KC_RIGHT,  KC_RSFT
+),
+[_FN] = LAYOUT(
+    KC_INS,    KC_HOME,  KC_PGUP,   KC_LGUI,
+    KC_DEL,    KC_END,   KC_PGDN,   KC_LCTRL,
+    KC_LSFT,   KC_UP,    KC_LALT,   TO(_BASE),
+    KC_LEFT,   KC_DOWN,  KC_RIGHT,  KC_RSFT
+)*/
 
 /*
 
