@@ -201,6 +201,16 @@ void ql_finished(qk_tap_dance_state_t *state, void *user_data) {
             break;
         case TD_DOUBLE_HOLD: layer_on(_ADJ); break;
         case TD_DOUBLE_SINGLE_TAP: tap_code(KC_PMNS); break;
+        case TD_TRIPLE_TAP:
+            // Check to see if the layer is already set
+            if (layer_state_is(_ADJ)) {
+                // If already set, then switch it off
+                layer_off(_ADJ);
+            } else {
+                // If not already set, then switch the layer on
+                layer_on(_ADJ);
+            }
+            break;
         default: break;
     }
 }
@@ -208,7 +218,7 @@ void ql_finished(qk_tap_dance_state_t *state, void *user_data) {
 void ql_reset(qk_tap_dance_state_t *state, void *user_data) {
     // If the key was held down and now is released then switch off the layer
     if (ql_tap_state.state == TD_SINGLE_HOLD) {
-        layer_off(_FN);
+        layer_off(_FN); layer_off(_ADJ);
     }
     if (ql_tap_state.state == TD_DOUBLE_HOLD) {
         layer_off(_ADJ);
