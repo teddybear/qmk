@@ -136,18 +136,20 @@ enum custom_keycodes {
 
 #define BSP_RSH MT(MOD_RSFT, KC_BSPC)
 #define SPC_LSH MT(MOD_LSFT, KC_SPC)
+#define SPC_LWR LT(_LOWER, KC_SPC)
 #define DEL_RSE LT(_RAISE, KC_DEL)
 #define TAB_RSE LT(_RAISE, KC_TAB)
 #define ENT_LWR LT(_LOWER, KC_ENT)
 #define ESC_LWR LT(_LOWER, KC_ESC)
+#define ESC_LGUI MT(MOD_LGUI, KC_ESC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_QWERTY] = LAYOUT(\
-  KC_LGUI, KC_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, RGUI_T(KC_RBRC), \
+  ESC_LGUI, KC_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, RGUI_T(KC_RBRC), \
            KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,         KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, RCTL_T(KC_QUOT), \
            KC_LALT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,         KC_N,    KC_M,    KC_COMM,    KC_DOT,     KC_SLSH, BSL_RAL, \
-                                      TAB_RSE, SPC_LSH, ENT_LWR,      ESC_LWR, BSP_RSH, DEL_RSE \
+                                      TAB_RSE, SPC_LSH, ENT_LWR,      SPC_LWR, BSP_RSH, DEL_RSE \
 ),
 
 [_LOWER] = LAYOUT(\
