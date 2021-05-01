@@ -19,7 +19,7 @@ enum {
 #define KC_NLCT  RCTL_T(KC_LNUM)
 #define KC_ETAL  RALT_T(KC_ENT)
 #define KC_ELAL  LALT_T(KC_ENT)
-// #define DEL_LW LT(_LOWER, KC_DEL)
+#define DEL_LW LT(_LOWER, KC_DEL)
 #define KC_ESGI  RGUI_T(KC_ESC)
 #define LOWER  MO(_LOWER)
 #define T_SHCS TD(TD_RSH_CAPS)
@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //          ├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                               KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_BSCT,
   //          └────────┴────────┴────────┴────────┼────────┼────────┤                          ├────────┼────────┼────────┴────────┴────────┴────────┘
-                                          CAPS_LW, KC_SPC,  KC_ELAL,                            KC_ETAL, KC_BSPC, LOWER
+                                          CAPS_LW, KC_SPC,  KC_ELAL,                            KC_ETAL, KC_BSPC, DEL_LW
                                   //     └────────┴────────┴────────┘                          └────────┴────────┴────────┘
   ),
 
