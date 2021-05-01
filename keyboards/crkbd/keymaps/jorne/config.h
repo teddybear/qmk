@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define USE_SERIAL_PD2
 
 //#define TAPPING_FORCE_HOLD
-//#define TAPPING_TERM 100
+#define TAPPING_TERM 190
 
 #undef RGBLED_NUM
 #define RGBLIGHT_ANIMATIONS
@@ -44,5 +44,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_VAL_STEP 17
 
 #define OLED_DISABLE_TIMEOUT
-#define TAPPING_TERM_PER_KEY
-
+// #define TAPPING_TERM_PER_KEY
+#define PERMISSIVE_HOLD
+// #define PERMISSIVE_HOLD_PER_KEY
