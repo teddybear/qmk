@@ -6,17 +6,33 @@ enum jiran_layers {
   _LOWER
 };
 
+enum {
+    TD_RSH_CAPS,
+    TD_SPC_CAPS,
+};
+
 #define KC_RBGI  RGUI_T(KC_RBRC)
 #define KC_BSCT  RCTL_T(KC_BSLS)
 #define KC_QTSH  RSFT_T(KC_QUOT)
 #define KC_SLSF  RSFT_T(KC_LSCR)
-#define KC_LSCL  LSFT_T(KC_CAPS)
+// #define KC_LSCL  LSFT_T(KC_CAPS)
 #define KC_NLCT  RCTL_T(KC_LNUM)
 #define KC_ETAL  RALT_T(KC_ENT)
 #define KC_ELAL  LALT_T(KC_ENT)
-#define DEL_LW LT(_LOWER, KC_DEL)
+// #define DEL_LW LT(_LOWER, KC_DEL)
 #define KC_ESGI  RGUI_T(KC_ESC)
 #define LOWER  MO(_LOWER)
+#define T_SHCS TD(TD_RSH_CAPS)
+#define T_SPCS TD(TD_SPC_CAPS)
+#define CAPS_LW LT(_LOWER, KC_CAPS)
+
+// Tap Dance definitions
+qk_tap_dance_action_t tap_dance_actions[] = {
+    // Tap once for Escape, twice for Caps Lock
+    [TD_RSH_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
+    [TD_SPC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_CAPS),
+};
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -26,11 +42,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┼────────┐
       KC_ESGI, KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBGI,
   // └────────┼────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┼────────┘
-               KC_LSCL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QTSH,
+               T_SHCS,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QTSH,
   //          ├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                               KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_BSCT,
   //          └────────┴────────┴────────┴────────┼────────┼────────┤                          ├────────┼────────┼────────┴────────┴────────┴────────┘
-                                          LOWER,   KC_SPC,  KC_LALT,                            KC_ETAL, KC_BSPC, DEL_LW
+                                          CAPS_LW, KC_SPC,  KC_ELAL,                            KC_ETAL, KC_BSPC, LOWER
                                   //     └────────┴────────┴────────┘                          └────────┴────────┴────────┘
   ),
 
@@ -40,11 +56,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┼────────┐
       KC_F11,  KC_CAPS, KC_TRNS, KC_HOME, KC_INS,  KC_TRNS, KC_TRNS,                            KC_VOLU, KC_PGUP, KC_INS,  KC_HOME, KC_END,  KC_DEL,  KC_F12,
   // └────────┼────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┼────────┘
-               KC_LSFT, KC_TRNS, KC_LEFT, KC_UP,   KC_RGHT, KC_TRNS,                            KC_MUTE, KC_LEFT, KC_UP,   KC_RGHT, KC_PSCR, KC_SLSF,
+               KC_TRNS, KC_TRNS, KC_LEFT, KC_UP,   KC_RGHT, KC_TRNS,                            KC_MUTE, KC_LEFT, KC_UP,   KC_RGHT, KC_PSCR, KC_SLSF,
   //          ├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-               KC_LCTL, KC_TRNS, KC_END,  KC_DOWN, KC_TRNS, KC_TRNS,                            KC_VOLD, KC_PGDN, KC_DOWN, KC_PSCR, KC_PAUS, KC_NLCT,
+               KC_TRNS, KC_TRNS, KC_END,  KC_DOWN, KC_TRNS, KC_TRNS,                            KC_VOLD, KC_PGDN, KC_DOWN, KC_PSCR, KC_PAUS, KC_NLCT,
   //          └────────┴────────┴────────┴────────┼────────┼────────┤                          ├────────┼────────┴────────┴────────┴────────┴────────┘
-                                          KC_TRNS, KC_SPC,  KC_TRNS,                            KC_ETAL, KC_BSPC, KC_TRNS
+                                          KC_TRNS, KC_TRNS, KC_TRNS,                            KC_TRNS, KC_TRNS, KC_TRNS
                                     //   └────────┴────────┴────────┘                          └────────┴────────┴────────┘
   ),
 
