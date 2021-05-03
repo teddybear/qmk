@@ -21,3 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define EE_HANDS
 #define TAPPING_TERM 190
 #define PERMISSIVE_HOLD
+#define MOUSEKEY_DELAY 110
+#define MOUSEKEY_INTERVAL 25
+#define MOUSEKEY_WHEEL_DELAY 150
+#define MOUSEKEY_MOVE_DELTA 5
