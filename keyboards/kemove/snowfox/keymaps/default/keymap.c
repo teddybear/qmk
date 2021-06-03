@@ -39,7 +39,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * \-----------------------------------------------------------------------------------------/
   */
   [_BASE_LAYER] = KEYMAP( /* Base */
-    KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINS, KC_EQL,   KC_BSPC,
+    KC_GRAVE, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINS, KC_EQL,   KC_BSPC,
     KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_LBRC, KC_RBRC,  KC_BSLS,
     LT(_ARROW_LAYER, KC_CAPS), KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,         KC_ENT,
     KC_LSFT,KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, RSFT_T(KC_UP),
@@ -92,7 +92,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * \-----------------------------------------------------------------------------------------/
   */
   [_ARROW_LAYER] = KEYMAP( /* Base */
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, SNOWFOX_LED_NEXT, SNOWFOX_LED_PDN, SNOWFOX_LED_PUP, SNOWFOX_LED_BDN, SNOWFOX_LED_BUP, SNOWFOX_LED_ON,   SNOWFOX_LED_OFF,
+    KC_ESC,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, SNOWFOX_LED_NEXT, SNOWFOX_LED_PDN, SNOWFOX_LED_PUP, SNOWFOX_LED_BDN, SNOWFOX_LED_BUP, SNOWFOX_LED_ON,   SNOWFOX_LED_OFF,
     KC_TRNS, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HOME, KC_END,  KC_TRNS,
     KC_TRNS, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, KC_TRNS, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_PGUP, KC_PGDN,         KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_BTN3, KC_TRNS, KC_TRNS, KC_DELETE, KC_END,  KC_PGDN, KC_DELETE, KC_UP,
@@ -120,7 +120,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS, KC_TRNS, KC_TRNS,      KC_TRNS,             KC_TRNS,  KC_TRNS,  KC_PGDN, KC_PGDN
   ),*/
   [_FN_LAYER] = KEYMAP( /* Base */
-    KC_GRAVE, KC_F1,                KC_F2,            KC_F3,               KC_F4,   KC_F5,   KC_F6,   KC_F7,    KC_F8,   KC_F9,   KC_F10,  KC_F11,   KC_F12,  KC_DELETE,
+    KC_ESC,   KC_F1,                KC_F2,            KC_F3,               KC_F4,   KC_F5,   KC_F6,   KC_F7,    KC_F8,   KC_F9,   KC_F10,  KC_F11,   KC_F12,  KC_DELETE,
     KC_TRNS,  KC_BTN1,              KC_MS_U,          KC_BTN2,             KC_WH_U, KC_TRNS, KC_TRNS, KC_PAUS,  KC_SLCK, KC_PSCR, KC_UP,   KC_HOME,  KC_END,  KC_INS,
     KC_TRNS,  KC_MS_L,              KC_MS_D,          KC_MS_R,             KC_WH_D, KC_TRNS, KC_TRNS, KC_TRNS,  KC_PGUP, KC_LEFT, KC_DOWN, KC_RIGHT,     KC_TRNS,
     KC_TRNS,  SNOWFOX_BLE_DISCOVER, SNOWFOX_BLE_CONN, SNOWFOX_BLE_DISCONN, KC_BTN3, KC_TRNS, KC_TRNS, KC_PGDN,  KC_PGDN, KC_TRNS, KC_TRNS,       KC_TRNS,
