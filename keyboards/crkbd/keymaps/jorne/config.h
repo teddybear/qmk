@@ -47,3 +47,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define TAPPING_TERM_PER_KEY
 #define PERMISSIVE_HOLD
 #define PERMISSIVE_HOLD_PER_KEY
+#define COMBO_COUNT 11
+#define COMBO_TERM 7

@@ -78,6 +78,7 @@ enum layer_number {
     _ADJUST,
     _ISO,
     _THUMB_ALT,
+    _FIVE,
 };
 
 enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRST, KC_SAMPLEMACRO, PLOVER, EXT_PLV };
@@ -105,6 +106,7 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRS
 
 #define TG_ISO TG(_ISO)
 #define TG_THMB TG(_THUMB_ALT)
+#define TG_FIVE TG(_FIVE)
 
 #define RBR_RGU MT(MOD_RGUI, KC_RBRC)
 #define F12_RGU MT(MOD_RGUI, KC_F12)
@@ -135,6 +137,47 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRS
 #define ENT_LCPS TD(ENT_LWR_CAPS)
 #define LCTL_CPS TD(TD_LCTL_CAPS)
 
+enum combos {
+  CPSL,
+  CPSLL,
+  EQL,
+  MNS,
+  PLS,
+  LBC,
+  RBC,
+  LCB,
+  RCB,
+  LPN,
+  RPN,
+};
+
+const uint16_t PROGMEM caps_combo[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM capsl_combo[] = {KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM eql_combo[] = {KC_A, KC_S, COMBO_END};
+const uint16_t PROGMEM mns_combo[] = {KC_L, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM pls_combo[] = {KC_Z, KC_X, COMBO_END};
+const uint16_t PROGMEM lb_combo[] = {KC_R, KC_T, COMBO_END};
+const uint16_t PROGMEM rb_combo[] = {KC_Y, KC_U, COMBO_END};
+const uint16_t PROGMEM lcb_combo[] = {KC_F, KC_G, COMBO_END};
+const uint16_t PROGMEM rcb_combo[] = {KC_H, KC_J, COMBO_END};
+const uint16_t PROGMEM lpn_combo[] = {KC_V, KC_B, COMBO_END};
+const uint16_t PROGMEM rpn_combo[] = {KC_N, KC_M, COMBO_END};
+
+
+combo_t key_combos[COMBO_COUNT] = {
+  [CPSL] = COMBO(caps_combo, KC_CAPS),
+  [CPSLL] = COMBO(capsl_combo, KC_CAPS),
+  [EQL] = COMBO(eql_combo, KC_EQL),
+  [MNS] = COMBO(mns_combo, KC_MINS),
+  [PLS] = COMBO(pls_combo, KC_PPLS),
+  [LBC] = COMBO(lb_combo, KC_LBRC),
+  [RBC] = COMBO(rb_combo, KC_RBRC),
+  [LCB] = COMBO(lcb_combo, KC_LCBR),
+  [RCB] = COMBO(rcb_combo, KC_RCBR),
+  [LPN] = COMBO(lpn_combo, KC_LPRN),
+  [RPN] = COMBO(rpn_combo, KC_RPRN),
+};
+
 enum {
     ENT_LWR_CAPS, // Our custom tap dance key; add any other tap dance keys to this enum
     TD_LCTL_CAPS,
@@ -164,9 +207,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_ADJUST] = LAYOUT(\
-    RESET,   RGBRST,  KC_ASUP, KC_ASTG, KC_ASDN, _______, _______,      _______, _______,  KC_ASDN, KC_ASTG, KC_ASUP, RGBRST,   RESET, \
-            RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, QWERTY,  PLOVER,       PLOVER,  QWERTY,  RGB_VAI, RGB_SAI, RGB_HUI, RGB_TOG, \
-            RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, TG_ISO,  TG_THMB,      TG_THMB, TG_ISO,  RGB_VAD, RGB_SAD, RGB_HUD, RGB_MOD, \
+    RESET,  CMB_ON,  KC_ASUP, KC_BTN1, KC_BTN3, KC_BTN2, PLOVER,      PLOVER, QWERTY,  KC_ASDN, KC_ASTG, KC_ASUP, CMB_ON,   RESET, \
+            CMB_TOG, RGB_HUI, KC_MS_L, KC_MS_U, KC_MS_R, KC_WH_U,       KC_LEFT,  KC_DOWN,  KC_UP, KC_RGHT, RGB_HUI, CMB_TOG, \
+            CMB_OFF, TG_FIVE, RGB_SAD, KC_MS_D, TG_ISO,  KC_WH_D,      TG_THMB, TG_ISO,  RGB_VAD, RGB_SAD, TG_FIVE, CMB_OFF, \
                                         _______, SH_TG,   _______,      _______, SH_TG,   _______\
     ),
 
@@ -175,7 +218,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, _______, \
             _______, _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
             _______, _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
-                                        DEL_RSE, BSP_RSH, ESC_LWR,      ENT_LWR, SPC_LSH, TAB_RSE \
+                                        DEL_RSE, BSP_RSH, ENT_LCPS,      ENT_LWR, SPC_LSH, TAB_RSE \
     ),
 
     [_ISO] = LAYOUT(\
@@ -183,6 +226,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             LCTL_T(KC_NUBS), _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
             LALT_T(KC_NUHS), _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, KC_RALT, \
                                                 _______, _______, _______,      _______, _______, _______\
+    ),
+
+    [_FIVE] = LAYOUT(\
+    _______, _______,         _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, _______, \
+            LCTL_T(KC_NUBS), _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
+            LALT_T(KC_NUHS), _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, KC_RALT, \
+                                                _______, KC_SPC, _______,      _______, KC_SPC, _______\
     ),
 
 };
