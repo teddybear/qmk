@@ -141,6 +141,7 @@ enum combos {
   CPSL,
   CPSLL,
   EQL,
+  SMNS,
   MNS,
   PLS,
   LBC,
@@ -149,33 +150,44 @@ enum combos {
   RCB,
   LPN,
   RPN,
+  QUO,
+  SPCC,
+  BKSP,
 };
 
 const uint16_t PROGMEM caps_combo[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM capsl_combo[] = {KC_D, KC_F, COMBO_END};
-const uint16_t PROGMEM eql_combo[] = {KC_A, KC_S, COMBO_END};
+const uint16_t PROGMEM eql_combo[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM mns_combo[] = {KC_L, KC_SCLN, COMBO_END};
-const uint16_t PROGMEM pls_combo[] = {KC_Z, KC_X, COMBO_END};
-const uint16_t PROGMEM lb_combo[] = {KC_R, KC_T, COMBO_END};
-const uint16_t PROGMEM rb_combo[] = {KC_Y, KC_U, COMBO_END};
-const uint16_t PROGMEM lcb_combo[] = {KC_F, KC_G, COMBO_END};
-const uint16_t PROGMEM rcb_combo[] = {KC_H, KC_J, COMBO_END};
-const uint16_t PROGMEM lpn_combo[] = {KC_V, KC_B, COMBO_END};
-const uint16_t PROGMEM rpn_combo[] = {KC_N, KC_M, COMBO_END};
+const uint16_t PROGMEM pls_combo[] = {KC_M, KC_COMM, COMBO_END};
+const uint16_t PROGMEM rt_combo[] = {KC_R, KC_T, COMBO_END};
+const uint16_t PROGMEM yu_combo[] = {KC_Y, KC_U, COMBO_END};
+const uint16_t PROGMEM fg_combo[] = {KC_F, KC_G, COMBO_END};
+const uint16_t PROGMEM hj_combo[] = {KC_H, KC_J, COMBO_END};
+const uint16_t PROGMEM vb_combo[] = {KC_V, KC_B, COMBO_END};
+const uint16_t PROGMEM nm_combo[] = {KC_N, KC_M, COMBO_END};
+const uint16_t PROGMEM io_combo[] = {KC_I, KC_O, COMBO_END};
+const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM er_combo[] = {KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM cv_combo[] = {KC_C, KC_V, COMBO_END};
 
 
 combo_t key_combos[COMBO_COUNT] = {
   [CPSL] = COMBO(caps_combo, KC_CAPS),
   [CPSLL] = COMBO(capsl_combo, KC_CAPS),
   [EQL] = COMBO(eql_combo, KC_EQL),
-  [MNS] = COMBO(mns_combo, KC_MINS),
+  [SMNS] = COMBO(mns_combo, KC_MINS),
+  [MNS] = COMBO(kl_combo, KC_MINS),
   [PLS] = COMBO(pls_combo, KC_PPLS),
-  [LBC] = COMBO(lb_combo, KC_LBRC),
-  [RBC] = COMBO(rb_combo, KC_RBRC),
-  [LCB] = COMBO(lcb_combo, KC_LCBR),
-  [RCB] = COMBO(rcb_combo, KC_RCBR),
-  [LPN] = COMBO(lpn_combo, KC_LPRN),
-  [RPN] = COMBO(rpn_combo, KC_RPRN),
+  [LBC] = COMBO(rt_combo, KC_LBRC),
+  [RBC] = COMBO(yu_combo, KC_RBRC),
+  [LCB] = COMBO(fg_combo, KC_LPRN),
+  [RCB] = COMBO(hj_combo, KC_RPRN),
+  [LPN] = COMBO(vb_combo, KC_LCBR),
+  [RPN] = COMBO(nm_combo, KC_RCBR),
+  [QUO] = COMBO(cv_combo, KC_QUOT),
+  [SPCC] = COMBO(io_combo, KC_SPC),
+  [BKSP] = COMBO(er_combo, KC_BSPC),
 };
 
 enum {
@@ -189,7 +201,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ESC_LGUI, KC_GRV,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,        KC_Y,    KC_U,    KC_I,       KC_O,    KC_P,    KC_LBRC, RGUI_T(KC_RBRC), \
               KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,        KC_H,    KC_J,    KC_K,       KC_L,    KC_SCLN, RCTL_T(KC_QUOT), \
               KC_LALT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,        KC_N,    KC_M,    KC_COMM,    KC_DOT,  KC_SLSH, BSL_RAL, \
-                                          TAB_RSE, SPC_LSH, ENT_LWR,     ENT_LCPS, BSP_RSH, DEL_RSE \
+                                          TAB_RSE, SPC_LSH, ENT_LWR,     ENT_LWR, BSP_RSH, DEL_RSE \
     ),
 
     [_LOWER] = LAYOUT(\
@@ -240,12 +252,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Define a type containing as many tapdance states as you need
 typedef enum {
     TD_NONE,
-    TD_UNKNOWN,
     TD_SINGLE_TAP,
     TD_SINGLE_HOLD,
     TD_DOUBLE_TAP,
     TD_DOUBLE_HOLD,
     TD_DOUBLE_SINGLE_TAP,
+    TD_UNKNOWN,
 } td_state_t;
 
 // Create a global instance of the tapdance state type
@@ -262,7 +274,6 @@ void ent_lw_reset(qk_tap_dance_state_t *state, void *user_data);
 
 // Determine the tapdance state to return
 td_state_t cur_dance(qk_tap_dance_state_t *state) {
-    // int current_state = 0;
     // bool is_new_dance = QK_TAP_DANCE <= state->interrupting_keycode && state->interrupting_keycode <= QK_TAP_DANCE_MAX;
 
     // if (state->count == 1) {
@@ -271,7 +282,7 @@ td_state_t cur_dance(qk_tap_dance_state_t *state) {
     // }
     if (state->count == 1) {
         if (!state->pressed) return TD_SINGLE_TAP;
-        else return TD_SINGLE_HOLD;
+        return TD_SINGLE_HOLD;
     }
     else if (state->count == 2) {
         // TD_DOUBLE_SINGLE_TAP is to distinguish between typing "pepper", and actually wanting a double tap
@@ -285,6 +296,31 @@ td_state_t cur_dance(qk_tap_dance_state_t *state) {
             return TD_DOUBLE_TAP;
     } else return TD_UNKNOWN; // Any number higher than the maximum state value you return above
 }
+
+// td_state_t cur_dance(qk_tap_dance_state_t *state) {
+//     int current_state = 0;
+//     bool is_new_dance = QK_TAP_DANCE <= state->interrupting_keycode && state->interrupting_keycode <= QK_TAP_DANCE_MAX;
+
+//     // if (state->count == 1) {
+//     //     if (state->interrupted || !state->pressed) return TD_SINGLE_TAP;
+//     //     else return TD_SINGLE_HOLD;
+//     // }
+//     if (state->count == 1) {
+//         if (!state->pressed) return TD_SINGLE_TAP;
+//         return TD_SINGLE_HOLD;
+//     }
+//     else if (state->count == 2) {
+//         // TD_DOUBLE_SINGLE_TAP is to distinguish between typing "pepper", and actually wanting a double tap
+//         // action when hitting 'pp'. Suggested use case for this return value is when you want to send two
+//         // keystrokes of the key, and not the 'double tap' action/macro.
+//         if (state->interrupted)
+//             return TD_DOUBLE_SINGLE_TAP;
+//         else if (state->pressed)
+//             return TD_DOUBLE_HOLD;
+//         else
+//             return TD_DOUBLE_TAP;
+//     } else return TD_UNKNOWN; // Any number higher than the maximum state value you return above
+// }
 
 // Handle the possible states for each tapdance keycode you define:
 
@@ -314,16 +350,12 @@ void ent_lw_finished(qk_tap_dance_state_t *state, void *user_data) {
 
 void ent_lw_reset(qk_tap_dance_state_t *state, void *user_data) {
     switch (td_state) {
-        case TD_SINGLE_TAP:
-            unregister_code16(KC_ENT);
-            break;
         case TD_SINGLE_HOLD:
             layer_off(_LOWER);
             break;
+        case TD_SINGLE_TAP:
         case TD_DOUBLE_SINGLE_TAP:
-            unregister_code16(KC_ENT);
         case TD_DOUBLE_HOLD:
-            unregister_code16(KC_ENT);
         default:
             unregister_code16(KC_ENT);
             break;
@@ -336,25 +368,33 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_LCTL_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_LCTL, KC_CAPS),
 };
 
-// uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-//     switch (keycode) {
-//         case ENT_LCPS:
-//             return 150;
-//         default:
-//             return TAPPING_TERM;
-//     }
-// }
+#define ALT_TAPPING_TERM 175
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case ENT_LCPS:
+            return 150;
+        case BSP_RSH:
+        case SPC_LSH:
+        case RCTL_T(KC_QUOT):
+            return ALT_TAPPING_TERM;
+        default:
+            return TAPPING_TERM;
+    }
+}
 
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case ENT_LCPS:
-            return true;
         case BSP_RSH:
+        case SPC_LSH:
+        case RCTL_T(KC_QUOT):
             return true;
         default:
             return false;
     }
 }
+
 
 uint32_t layer_state_set_user(uint32_t state) { return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST); }
 

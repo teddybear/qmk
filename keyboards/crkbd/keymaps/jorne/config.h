@@ -32,8 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define USE_SERIAL_PD2
 
-//#define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 190
+
 
 // #undef RGBLED_NUM
 // #define RGBLIGHT_ANIMATIONS
@@ -44,8 +43,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define RGBLIGHT_VAL_STEP 17
 #define SPLIT_USB_DETECT
 #define OLED_DISABLE_TIMEOUT
-// #define TAPPING_TERM_PER_KEY
+
+//#define TAPPING_FORCE_HOLD
+#define TAPPING_TERM 135
+#define TAPPING_TERM_PER_KEY
 #define PERMISSIVE_HOLD
 #define PERMISSIVE_HOLD_PER_KEY
-#define COMBO_COUNT 11
-#define COMBO_TERM 7
+#define COMBO_COUNT 15
+#define COMBO_TERM 10
