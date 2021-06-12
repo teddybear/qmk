@@ -331,4 +331,3 @@ void led_set_user(uint8_t usb_led) {
         // reset_keyboard(); // reset keyboard on capslock (for debugging)
     }
 }
-
