@@ -138,6 +138,8 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRS
 #define LCTL_CPS TD(TD_LCTL_CAPS)
 
 enum combos {
+//   UIOP_MENU,
+//   YUIO_WMENU,
   CPSL,
   CPSLL,
   EQL,
@@ -158,6 +160,7 @@ enum combos {
   RALTC,
 };
 
+
 const uint16_t PROGMEM caps_combo[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM capsl_combo[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM eql_combo[] = {KC_U, KC_I, COMBO_END};
@@ -176,6 +179,8 @@ const uint16_t PROGMEM cv_combo[] = {KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM commdot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM ji_combo[] = {KC_J, KC_I, COMBO_END};
 const uint16_t PROGMEM fe_combo[] = {KC_F, KC_E, COMBO_END};
+const uint16_t PROGMEM uiop_combo[] = {KC_U, KC_I, KC_O, KC_P, COMBO_END};
+const uint16_t PROGMEM yuio_combo[] = {KC_Y, KC_U, KC_I, KC_O, COMBO_END};
 
 
 combo_t key_combos[COMBO_COUNT] = {
@@ -197,7 +202,38 @@ combo_t key_combos[COMBO_COUNT] = {
   [BKSL] = COMBO(commdot_combo, KC_BSLS),
   [LALTC] = COMBO(ji_combo, KC_LALT),
   [RALTC] = COMBO(fe_combo, KC_LALT),
+//   [UIOP_MENU] = COMBO_ACTION(uiop_combo),
+//   [YUIO_WMENU] = COMBO_ACTION(yuio_combo),
 };
+
+// void process_combo_event(uint16_t combo_index, bool pressed) {
+//   switch(combo_index) {
+//     case UIOP_MENU:
+//       if (pressed) {
+//         tap_code16(LALT(KC_P));
+//       }
+//       break;
+//     case YUIO_WMENU:
+//       if (pressed) {
+//         tap_code16(LGUI(KC_P));
+//       }
+//       break;
+//     case EQL:
+//        if (pressed) {
+//         register_code16(KC_EQL);
+//       } else {
+//           unregister_code16(KC_EQL);
+//       }
+//       break;
+//     case SPCC:
+//        if (pressed) {
+//         register_code16(KC_SPC);
+//       } else {
+//           unregister_code16(KC_SPC);
+//       }
+//       break;
+//   }
+// }
 
 enum {
     ENT_LWR_CAPS, // Our custom tap dance key; add any other tap dance keys to this enum
