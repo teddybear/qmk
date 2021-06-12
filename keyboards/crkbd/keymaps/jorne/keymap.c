@@ -154,6 +154,8 @@ enum combos {
   SPCC,
   BKSP,
   BKSL,
+  LALTC,
+  RALTC,
 };
 
 const uint16_t PROGMEM caps_combo[] = {KC_J, KC_K, COMBO_END};
@@ -172,6 +174,8 @@ const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
 const uint16_t PROGMEM er_combo[] = {KC_E, KC_R, COMBO_END};
 const uint16_t PROGMEM cv_combo[] = {KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM commdot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM ji_combo[] = {KC_J, KC_I, COMBO_END};
+const uint16_t PROGMEM fe_combo[] = {KC_F, KC_E, COMBO_END};
 
 
 combo_t key_combos[COMBO_COUNT] = {
@@ -191,6 +195,8 @@ combo_t key_combos[COMBO_COUNT] = {
   [SPCC] = COMBO(io_combo, KC_SPC),
   [BKSP] = COMBO(er_combo, KC_BSPC),
   [BKSL] = COMBO(commdot_combo, KC_BSLS),
+  [LALTC] = COMBO(ji_combo, KC_LALT),
+  [RALTC] = COMBO(fe_combo, KC_LALT),
 };
 
 enum {
