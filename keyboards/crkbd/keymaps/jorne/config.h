@@ -49,5 +49,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TAPPING_TERM_PER_KEY
 #define PERMISSIVE_HOLD
 #define PERMISSIVE_HOLD_PER_KEY
-#define COMBO_COUNT 15
+#define COMBO_COUNT 16
 #define COMBO_TERM 10
