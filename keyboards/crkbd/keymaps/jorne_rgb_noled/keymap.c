@@ -135,7 +135,7 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRS
 #define ESC_LWR LT(_LOWER, KC_ESC)
 #define ESC_LGUI LGUI_T(KC_ESC)
 
-// #include "taps.c"
+#include "taps.c"
 #include "hld.c"
 #include "cmbs.c"
 
@@ -174,7 +174,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, _______, \
             _______, _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
             _______, _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
-                                        DEL_RSE, BSP_RSH, ENT_LWR,      ENT_LWR, SPC_LSH, TAB_RSE \
+                                        DEL_RSE, BSP_RSH, ENT_LCPS,      ENT_LWR, SPC_LSH, TAB_RSE \
     ),
 
     [_ISO] = LAYOUT(\
