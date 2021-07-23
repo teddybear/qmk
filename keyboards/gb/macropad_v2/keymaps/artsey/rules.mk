@@ -20,6 +20,8 @@ AUDIO_ENABLE = no           # Audio output
 RGB_MATRIX_ENABLE = yes
 RGB_MATRIX_DRIVER = WS2812
 WS2812_DRIVER = pwm
+COMBO_ENABLE = yes
+MOUSEKEYS_ENABLE = yes
 
 # Enter lower-power sleep mode when on the ChibiOS idle thread
 OPT_DEFS += -DCORTEX_ENABLE_WFI_IDLE=TRUE
