@@ -81,7 +81,7 @@ enum layer_number {
     _FIVE,
 };
 
-enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRST, KC_SAMPLEMACRO, PLOVER, EXT_PLV };
+enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRST, KC_SAMPLEMACRO, PLOVER, EXT_PLV, XKBMAP};
 
 #define KC______ KC_TRNS
 #define KC_XXXXX KC_NO
@@ -163,7 +163,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_ADJUST] = LAYOUT(\
-    RESET,  CMB_ON,  KC_ASUP, KC_BTN1, KC_BTN3, KC_BTN2, _______,      _______, QWERTY,  KC_ASDN, KC_ASTG, KC_ASUP, CMB_ON,   RESET, \
+    RESET,  CMB_ON,  KC_ASUP, KC_BTN1, KC_BTN3, KC_BTN2, XKBMAP,      _______, QWERTY,  KC_ASDN, KC_ASTG, KC_ASUP, CMB_ON,   RESET, \
             CMB_TOG, RGB_HUI, KC_MS_L, KC_MS_U, KC_MS_R, KC_WH_U,      KC_LEFT,  KC_DOWN,  KC_UP, KC_RGHT, RGB_HUI, CMB_TOG, \
             CMB_OFF, TG_FIVE, RGB_SAD, KC_MS_D, TG_ISO,  KC_WH_D,      TG_THMB, TG_ISO,  RGB_VAD, RGB_SAD, TG_FIVE, CMB_OFF, \
                                         _______, SH_TG,   _______,     _______, SH_TG,   _______\
@@ -287,6 +287,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
+        case XKBMAP:
+            if (record->event.pressed) {
+                SEND_STRING("setxkbmap -model pc105 -layout us,ru -option grp:caps_toggle,lv3:ralt_switch,misc:typo -option terminate:ctrl_alt_bksp -option kpdl:dot -option grp_led:scroll");
+            } else {}
+            break;
         case QWERTY:
             if (record->event.pressed) {
                 persistent_default_layer_set(1UL << _QWERTY);
