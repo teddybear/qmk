@@ -4,9 +4,6 @@
 #    include "lufa.h"
 #    include "split_util.h"
 #endif
-#ifdef SSD1306OLED
-#    include "ssd1306.h"
-#endif
 
 #undef LAYOUT
 #undef LAYOUT_kc
@@ -64,7 +61,6 @@ const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
 extern rgblight_config_t rgblight_config;
 #endif
 
-extern uint8_t is_master;
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
@@ -81,7 +77,7 @@ enum layer_number {
     _FIVE,
 };
 
-enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRST, KC_SAMPLEMACRO, PLOVER, EXT_PLV };
+enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRST, KC_SAMPLEMACRO, PLOVER, EXT_PLV, XKBMAP };
 
 #define KC______ KC_TRNS
 #define KC_XXXXX KC_NO
@@ -225,14 +221,10 @@ void matrix_init_user(void) {
     RGB_current_mode = rgblight_config.mode;
     rgblight_step();
 #endif
-// SSD1306 OLED init, make sure to add #define SSD1306OLED in config.h
-#ifdef SSD1306OLED
-    iota_gfx_init(!has_usb());  // turns on the display
-#endif
 }
 
 // SSD1306 OLED update loop, make sure to add #define SSD1306OLED in config.h
-#ifdef SSD1306OLED
+#ifdef OLED_DRIVER_ENABLE
 
 // When add source files to SRC in rules.mk, you can use functions.
 const char *read_layer_state(void);
@@ -246,13 +238,12 @@ const char *read_keylogs(void);
 // void set_timelog(void);
 // const char *read_timelog(void);
 
-void matrix_scan_user(void) { iota_gfx_task(); }
 
-void matrix_render_user(struct CharacterMatrix *matrix) {
+void iota_gfx_task_user(void) {
     // if (is_master) {
         // If you want to change the display of OLED, you need to change here
-        matrix_write_ln(matrix, read_layer_state());
-        matrix_write_ln(matrix, read_keylog());
+        oled_write_ln(read_layer_state(), false);
+        oled_write_ln(read_keylog(), false);
         // matrix_write_ln(matrix, read_keylogs());
         // matrix_write_ln(matrix, read_mode_icon(keymap_config.swap_lalt_lgui));
         // matrix_write_ln(matrix, read_host_led_state());
@@ -263,30 +254,22 @@ void matrix_render_user(struct CharacterMatrix *matrix) {
     // }
 }
 
-void matrix_update(struct CharacterMatrix *dest, const struct CharacterMatrix *source) {
-    if (memcmp(dest->display, source->display, sizeof(dest->display))) {
-        memcpy(dest->display, source->display, sizeof(dest->display));
-        dest->dirty = true;
-    }
-}
-
-void iota_gfx_task_user(void) {
-    struct CharacterMatrix matrix;
-    matrix_clear(&matrix);
-    matrix_render_user(&matrix);
-    matrix_update(&display, &matrix);
-}
-#endif  // SSD1306OLED
+#endif  // OLED_DRIVER_ENABLED
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
-#ifdef SSD1306OLED
+#ifdef OLED_DRIVER_ENABLED
         set_keylog(keycode, record);
 #endif
         // set_timelog();
     }
 
     switch (keycode) {
+        case XKBMAP:
+            if (record->event.pressed) {
+                SEND_STRING("setxkbmap -model pc105 -layout us,ru -option grp:caps_toggle,lv3:ralt_switch,misc:typo -option terminate:ctrl_alt_bksp -option kpdl:dot -option grp_led:scroll");
+            } else {}
+            break;
         case QWERTY:
             if (record->event.pressed) {
                 persistent_default_layer_set(1UL << _QWERTY);
