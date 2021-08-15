@@ -11,9 +11,10 @@ enum layer_number {
     _ISO,
     _THUMB_ALT,
     _FIVE,
+    _MACR,
 };
 
-enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRST, KC_SAMPLEMACRO, PLOVER, EXT_PLV, XKBMAP };
+enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, MACR, RGBRST, KC_SAMPLEMACRO, PLOVER, EXT_PLV, XKBMAP };
 
 #define KC______ KC_TRNS
 #define KC_XXXXX KC_NO
@@ -35,6 +36,7 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRS
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
+#define MACR MO(_MACR)
 
 #define TG_ISO TG(_ISO)
 #define TG_THMB TG(_THUMB_ALT)
@@ -96,8 +98,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LGUI_T(KC_GRV),  KC_Q,   KC_W,  KC_E,   KC_R,    KC_T,       KC_Y,    KC_U,   KC_I,   KC_O,   KC_P,    RGUI_T(KC_LBRC),  \
     KC_LCTL,  KC_A,   KC_S,  KC_D,   KC_F,    KC_G,              KC_H,    KC_J,   KC_K,   KC_L,   KC_SCLN, RCTL_T(KC_QUOT), \
     KC_LALT, KC_Z,   KC_X,  KC_C,   KC_V,    KC_B,               KC_N,    KC_M,   KC_COMM,KC_DOT, KC_SLSH, BSL_RAL, \
-    KC_LBRC,KC_RBRC, TAB_RSE, SPC_LSH, ESC_LWR,  LOWER,          RAISE, ENT_LWR, BSP_RSH, DEL_RSE, KC_DEL, KC_TAB,   \
-                                    KC_BSPC,KC_GRV,              KC_LGUI, KC_LALT
+    _______,_______, TAB_RSE, SPC_LSH, ESC_LWR,  LOWER,          RAISE, ENT_LWR, BSP_RSH, DEL_RSE, _______, _______,   \
+                                       KC_BSPC,  MACR,           MACR, KC_LALT
 ),
 
 [_LOWER] = LAYOUT(
@@ -116,12 +118,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     _______,_______,                         _______,_______                                    \
 ),
 [_ADJUST] = LAYOUT(
-    CMB_ON,     RESET, KC_BTN1, KC_BTN3,   KC_BTN2,  XKBMAP,            _______, QWERTY,   KC_ASDN,    KC_ASTG, RESET,   CMB_ON,  \
-    CMB_TOG,    RGB_HUI, KC_MS_L, KC_MS_U, KC_MS_R,  KC_WH_U,           KC_LEFT, KC_DOWN,  KC_UP,      KC_RGHT, RGB_HUI, CMB_TOG, \
-    CMB_OFF,    TG_FIVE, RGB_SAD, KC_MS_D, TG_ISO,   KC_WH_D,           TG_THMB, TG_ISO,   RGB_VAD,    RGB_SAD, TG_FIVE, CMB_OFF, \
+    CMB_ON,     RESET,   KC_BTN1, KC_BTN3, KC_BTN2,  XKBMAP,                 _______, QWERTY,   KC_ASDN,    KC_ASTG, RESET,   CMB_ON,  \
+    CMB_TOG,    RGB_HUI, KC_MS_L, KC_MS_U, KC_MS_R,  KC_WH_U,                KC_LEFT, KC_DOWN,  KC_UP,      KC_RGHT, RGB_HUI, CMB_TOG, \
+    CMB_OFF,    _______, KC_WH_U, KC_MS_D, KC_WH_D,   KC_WH_D,               _______, _______,   RGB_VAD,    RGB_SAD, _______, CMB_OFF, \
     _______,          _______,_______,_______,_______,_______,               _______,_______,_______,_______,_______,_______,   \
                                     _______,_______,                         _______,_______                                    \
-)
+),
+[_MACR] = LAYOUT(
+    LGUI_T(KC_NLCK),  KC_PSLS, KC_7,    KC_8,    KC_9,     KC_MINS,          KC_VOLU, KC_HOME, KC_INS,     KC_PGUP, KC_SLCK, RGUI_T(KC_CAPS), \
+    EQL_LCT,          KC_PAST, KC_4,    KC_5,    KC_6,     KC_PPLS,          KC_MUTE, KC_LEFT, KC_UP,      KC_RGHT, KC_PSCR, APP_RCT, \
+    _______,          KC_0,    KC_1,    KC_2,    KC_3,     KC_PCMM,          KC_VOLD, KC_END,  KC_DOWN,    KC_PGDN, KC_PAUS, _______, \
+    _______,          _______,_______,_______,_______,_______,               _______,_______,_______,_______,_______,_______,   \
+                                    _______,_______,                         _______,_______                                    \
+),
 };
 
 uint32_t layer_state_set_user(uint32_t state) { return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST); }
