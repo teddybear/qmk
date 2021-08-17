@@ -65,6 +65,7 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, SYM, SYMA, NUM, NAV, FUN, MOUSE};
 #define LS_D LSFT_T(KC_D)
 #define LC_F LCTL_T(KC_F)
 #define GR_X RALT_T(KC_X)
+#define GR_SL RALT_T(KC_SLSH)
 
 #define RG_SC RGUI_T(KC_SCLN)
 #define RA_L LALT_T(KC_L)
@@ -88,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(\
             KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,                       KC_Y,    KC_U,    KC_I,       KC_O,    KC_P,  \
             LG_A,    LA_S,    LS_D,    LC_F,     KC_G,                       KC_H,    RC_J,    RS_K,       RA_L,    RG_SC,  \
-            KC_Z,    GR_X,    KC_C,    KC_V,     KC_B,                       KC_N,    KC_M,    KC_COMM,    GR_DOT,  KC_SLSH, \
+            KC_Z,    GR_X,    KC_C,    KC_V,     KC_B,                       KC_N,    KC_M,    KC_COMM,    GR_DOT,  GR_SL, \
                                       ESC_FUN,  SPC_NAV, TAB_MOS,           ENT_SYM, BSP_NUM, DEL_NAV \
     ),
 
