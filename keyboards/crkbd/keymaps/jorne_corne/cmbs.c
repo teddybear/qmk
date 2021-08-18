@@ -20,6 +20,7 @@ enum combos {
   BKSL,
   LALTC,
   RALTC,
+  FF,
 };
 
 
@@ -42,6 +43,7 @@ const uint16_t PROGMEM commdot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM ji_combo[] = {KC_J, KC_I, COMBO_END};
 const uint16_t PROGMEM fe_combo[] = {KC_F, KC_E, COMBO_END};
 const uint16_t PROGMEM op_combo[] = {KC_O, KC_P, COMBO_END};
+const uint16_t PROGMEM f23_combo[] = {KC_F2, KC_F3, COMBO_END};
 // const uint16_t PROGMEM uiop_combo[] = {KC_U, KC_I, KC_O, KC_P, COMBO_END};
 // const uint16_t PROGMEM yuio_combo[] = {KC_Y, KC_U, KC_I, KC_O, COMBO_END};
 
@@ -66,6 +68,7 @@ combo_t key_combos[COMBO_COUNT] = {
   [LALTC] = COMBO(ji_combo, KC_LALT),
   [RALTC] = COMBO(fe_combo, KC_LALT),
   [OP_MENU] = COMBO(op_combo, LALT(KC_P)),
+  [FF] = COMBO(f23_combo, KC_F1),
 //   [OP_MENU] = COMBO_ACTION(op_combo),
 //   [UIOP_MENU] = COMBO_ACTION(uiop_combo),
 //   [YUIO_WMENU] = COMBO_ACTION(yuio_combo),
