@@ -16,6 +16,7 @@ enum jian_keycodes {
   DVORAK,
   COLEMAK,
   WORKMAN,
+  XKBMAP,
 };
 
 #define RAISE_T(kc) LT(_RAISE, kc)
@@ -37,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   LGUI_T(KC_ESC), KC_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,         RGUI_T(KC_RBRC),
                   KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, RCTL_T(KC_QUOT),
                   KC_LALT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,      KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RALT_T(KC_BSLS),
-                  RAISE_T(KC_TAB), LSFT_T(KC_SPC), LOWER_T(KC_ENT),       LOWER_T(KC_ENT), RSFT_T(KC_BSPC), RAISE_T(KC_DEL)
+                  RAISE_T(KC_TAB),  LSFT_T(KC_SPC),   LOWER_T(KC_ESC),    LOWER_T(KC_ENT), RSFT_T(KC_BSPC), RAISE_T(KC_DEL)
 ),
 
 [_DVORAK] = LAYOUT(
@@ -69,16 +70,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_RAISE] = LAYOUT(
-  _______, KC_NLCK,         KC_PSLS, KC_P7,   KC_P8,   KC_P9,   KC_PMNS,      KC_VOLU, KC_HOME, KC_INS,  KC_PGUP, KC_SLCK, KC_CAPS,        _______,
-           LCTL_T(KC_EQL),  KC_PAST, KC_P4,   KC_P5,   KC_P6,   KC_PPLS,      KC_MUTE, KC_LEFT, KC_UP,   KC_RGHT, KC_PSCR, RCTL_T(KC_APP),
-           _______,         KC_P0,   KC_P1,   KC_P2,   KC_P3,   KC_PCMM,      KC_VOLD, KC_END,  KC_DOWN, KC_PGDN, KC_PAUS, _______,
+  _______, KC_NLCK,         KC_PSLS, KC_7,     KC_8,    KC_9,   KC_PMNS,      KC_VOLU, KC_HOME, KC_INS,  KC_PGUP, KC_SLCK, KC_CAPS,        _______,
+           LCTL_T(KC_EQL),  KC_PAST, KC_4,     KC_5,    KC_6,   KC_PPLS,      KC_MUTE, KC_LEFT, KC_UP,   KC_RGHT, KC_PSCR, RCTL_T(KC_APP),
+           _______,         KC_0,    KC_1,     KC_2,    KC_3,   KC_PCMM,      KC_VOLD, KC_END,  KC_DOWN, KC_PGDN, KC_PAUS, _______,
                                               _______, _______, _______,      _______, _______, _______
 ),
 
 [_ADJUST] = LAYOUT_symmetric(
-  RESET,   DEBUG,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-           XXXXXXX,        WORKMAN, COLEMAK, DVORAK,  QWERTY,  XXXXXXX,
-           TG(_BCKLT_ADJ), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  RESET,    CMB_ON,  DEBUG,          KC_BTN1, KC_BTN3, KC_BTN2,  XKBMAP,
+            CMB_TOG, XXXXXXX,        KC_MS_L, KC_MS_U, KC_MS_R,  KC_WH_U,
+            CMB_OFF, TG(_BCKLT_ADJ), XXXXXXX, KC_MS_D, XXXXXXX,  KC_WH_D,
                                              _______, SW_TG,   _______
 ),
 
