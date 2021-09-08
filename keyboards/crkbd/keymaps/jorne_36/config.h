@@ -27,23 +27,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define MASTER_LEFT
 // #define MASTER_RIGHT
 #define EE_HANDS
-
-#define SSD1306OLED
-
 #define USE_SERIAL_PD2
 
-//#define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 190
-
-// #undef RGBLED_NUM
-// #define RGBLIGHT_ANIMATIONS
-// #define RGBLED_NUM 28
-// #define RGBLIGHT_LIMIT_VAL 120
-// #define RGBLIGHT_HUE_STEP 10
-// #define RGBLIGHT_SAT_STEP 17
-// #define RGBLIGHT_VAL_STEP 17
 #define SPLIT_USB_DETECT
-#define OLED_DISABLE_TIMEOUT
+
+//#define TAPPING_FORCE_HOLD
+#define TAPPING_TERM 200
 // #define TAPPING_TERM_PER_KEY
 #define PERMISSIVE_HOLD
 // #define PERMISSIVE_HOLD_PER_KEY
+
+#define COMBO_COUNT 19
+#define COMBO_TERM 10
+
+#define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_FORCE_HOLD
+#define TAPPING_FORCE_HOLD_PER_KEY
