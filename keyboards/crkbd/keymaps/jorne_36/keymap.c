@@ -73,11 +73,11 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, SYM, SYMA, NUM, NAV, FUN, MOUSE};
 #define RC_J RCTL_T(KC_J)
 #define GR_DOT RALT_T(KC_DOT)
 
-#define ESC_FUN LT(_FUN, KC_ESC)
+#define TAB_FUN LT(_FUN, KC_TAB)
 #define SPC_NAV LT(_NAV, KC_SPC)
-#define TAB_MOS LT(_MOUSE, KC_TAB)
-#define ENT_SYM LT(_SYM, KC_ENT)
-#define BSP_NUM LT(_NUM, KC_BSPC)
+#define ESC_MOS LT(_MOUSE, KC_ESC)
+#define ENT_NUM LT(_NUM, KC_ENT)
+#define BSP_SYM LT(_SYM, KC_BSPC)
 #define DEL_NAV LT(_NAV, KC_DEL)
 
 #include "taps.c"
@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,                       KC_Y,    KC_U,    KC_I,       KC_O,    KC_P,  \
             LG_A,    LA_S,    LS_D,    LC_F,     KC_G,                       KC_H,    RC_J,    RS_K,       RA_L,    RG_SC,  \
             KC_Z,    GR_X,    KC_C,    KC_V,     KC_B,                       KC_N,    KC_M,    KC_COMM,    GR_DOT,  GR_SL, \
-                                      ESC_FUN,  SPC_NAV, TAB_MOS,           ENT_SYM, BSP_NUM, DEL_NAV \
+                                      TAB_FUN,  SPC_NAV, ESC_MOS,           ENT_NUM, BSP_SYM, DEL_NAV \
     ),
 
     [_SYM] = LAYOUT(\
