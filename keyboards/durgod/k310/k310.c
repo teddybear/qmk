@@ -18,6 +18,7 @@
 
 /* Private Functions */
 void off_all_leds(void) {
+    writePinHigh(LED_NUM_LOCK_PIN);
     writePinHigh(LED_CAPS_LOCK_PIN);
     writePinHigh(LED_SCROLL_LOCK_PIN);
     writePinHigh(LED_WIN_LOCK_PIN);
@@ -25,6 +26,7 @@ void off_all_leds(void) {
 }
 
 void on_all_leds(void) {
+    writePinLow(LED_NUM_LOCK_PIN);
     writePinLow(LED_CAPS_LOCK_PIN);
     writePinLow(LED_SCROLL_LOCK_PIN);
     writePinLow(LED_WIN_LOCK_PIN);
@@ -33,6 +35,7 @@ void on_all_leds(void) {
 
 /* WinLock and MR LEDs are non-standard. Need to override led init */
 void led_init_ports(void) {
+    setPinOutput(LED_NUM_LOCK_PIN);
     setPinOutput(LED_CAPS_LOCK_PIN);
     setPinOutput(LED_SCROLL_LOCK_PIN);
     setPinOutput(LED_WIN_LOCK_PIN);

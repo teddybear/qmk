@@ -59,9 +59,10 @@ product APPLE EXT_KBD		0x020c	Apple Extended USB Keyboard
 //#define BOOTMAGIC_KEY_SALT          KC_APFN
 
 /* LED indicator pins */
+#define LED_NUM_LOCK_PIN   C8
 #define LED_CAPS_LOCK_PIN   C9
 #define LED_SCROLL_LOCK_PIN A8
 #define LED_WIN_LOCK_PIN    A9
 #define LED_MR_LOCK_PIN     A10
 #define LED_PIN_ON_STATE    0
-
+#define TAPPING_TERM 200
