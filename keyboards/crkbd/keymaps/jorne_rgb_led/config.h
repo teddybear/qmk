@@ -50,7 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define SPLIT_USB_DETECT
 
-#define OLED_DISABLE_TIMEOUT
+// #define OLED_TIMEOUT 10000
 #define OLED_ENABLE
 
 #define TAPPING_TERM 135

@@ -286,7 +286,8 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 }
 void oled_task_user(void) {
     // Host Keyboard Layer Status
-    oled_write_P(PSTR("Layer\n"), false);
+    // oled_write_P(PSTR("Layer\n"), false);
+    oled_write_P(PSTR("-----\n"), false);
 
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
@@ -301,9 +302,12 @@ void oled_task_user(void) {
         case _ADJUST:
             oled_write_P(PSTR("ADJ\n"), false);
             break;
+        case _FIVE:
+            oled_write_P(PSTR("FVE\n"), false);
+            break;
         default:
             // Or use the write_ln shortcut over adding '\n' to the end of your string
-            oled_write_ln_P(PSTR("UNDEF"), false);
+            oled_write_ln_P(PSTR("UNDEF\n"), false);
     }
 
     // Host Keyboard LED Status
