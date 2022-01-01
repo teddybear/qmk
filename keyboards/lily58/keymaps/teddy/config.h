@@ -27,5 +27,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define EE_HANDS
 
 #define TAPPING_TERM 135
-#define COMBO_COUNT 19
+#define COMBO_COUNT 22
 #define COMBO_TERM 17
