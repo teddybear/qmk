@@ -265,30 +265,32 @@ bool oled_task_user(void) {
 
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
-            oled_write_P(PSTR("QWE\n"), false);
+            oled_write_P(PSTR(" QWE\n"), false);
             break;
         case _LOWER:
-            oled_write_P(PSTR("LWR\n"), false);
+            oled_write_P(PSTR(" LWR\n"), false);
             break;
         case _RAISE:
-            oled_write_P(PSTR("RSE\n"), false);
+            oled_write_P(PSTR(" RSE\n"), false);
             break;
         case _ADJUST:
-            oled_write_P(PSTR("ADJ\n"), false);
+            oled_write_P(PSTR(" ADJ\n"), false);
             break;
         case _FIVE:
-            oled_write_P(PSTR("FVE\n"), false);
+            oled_write_P(PSTR(" FVE\n"), false);
             break;
         default:
             // Or use the write_ln shortcut over adding '\n' to the end of your string
             oled_write_ln_P(PSTR("UNDEF\n"), false);
     }
+    oled_write_P(PSTR("     "), false);
+    oled_write_P(PSTR("-----\n"), false);
 
     // Host Keyboard LED Status
     led_t led_state = host_keyboard_led_state();
-    oled_write_P(led_state.num_lock ? PSTR("NUM \n") : PSTR("    \n"), false);
-    oled_write_P(led_state.caps_lock ? PSTR("CAP \n") : PSTR("    \n"), false);
-    oled_write_P(led_state.scroll_lock ? PSTR("SCR \n") : PSTR("    \n"), false);
+    oled_write_P(led_state.num_lock ? PSTR(" NUM \n") : PSTR("    \n"), false);
+    oled_write_P(led_state.caps_lock ? PSTR(" CAP \n") : PSTR("    \n"), false);
+    oled_write_P(led_state.scroll_lock ? PSTR(" SCR \n") : PSTR("    \n"), false);
 
     return false;
 }
