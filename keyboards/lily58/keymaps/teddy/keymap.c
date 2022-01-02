@@ -174,49 +174,122 @@ layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
-//SSD1306 OLED update loop, make sure to enable OLED_ENABLE=yes in rules.mk
-#ifdef OLED_ENABLE
+// //SSD1306 OLED update loop, make sure to enable OLED_ENABLE=yes in rules.mk
+// #ifdef OLED_ENABLE
 
-oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-  if (!is_keyboard_master())
-    return OLED_ROTATION_180;  // flips the display 180 degrees if offhand
-  return rotation;
+// oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+//   if (!is_keyboard_master())
+//     return OLED_ROTATION_180;  // flips the display 180 degrees if offhand
+//   return rotation;
+// }
+
+// // When you add source files to SRC in rules.mk, you can use functions.
+// const char *read_layer_state(void);
+// const char *read_logo(void);
+// void set_keylog(uint16_t keycode, keyrecord_t *record);
+// const char *read_keylog(void);
+// const char *read_keylogs(void);
+
+// // const char *read_mode_icon(bool swap);
+// // const char *read_host_led_state(void);
+// // void set_timelog(void);
+// // const char *read_timelog(void);
+
+// bool oled_task_user(void) {
+//   if (is_keyboard_master()) {
+//     // If you want to change the display of OLED, you need to change here
+//     oled_write_ln(read_layer_state(), false);
+//     oled_write_ln(read_keylog(), false);
+//     oled_write_ln(read_keylogs(), false);
+//     //oled_write_ln(read_mode_icon(keymap_config.swap_lalt_lgui), false);
+//     //oled_write_ln(read_host_led_state(), false);
+//     //oled_write_ln(read_timelog(), false);
+//   } else {
+//     oled_write(read_logo(), false);
+//   }
+//     return false;
+// }
+// #endif // OLED_ENABLE
+
+// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//   if (record->event.pressed) {
+// #ifdef OLED_ENABLE
+//     set_keylog(keycode, record);
+// #endif
+//     // set_timelog();
+//   }
+//   return true;
+// }
+
+LEADER_EXTERNS();
+
+void matrix_scan_user(void) {
+  LEADER_DICTIONARY() {
+    leading = false;
+    leader_end();
+
+    SEQ_ONE_KEY(KC_F) {
+      // Anything you can do in a macro.
+      SEND_STRING("QMK is awesome.");
+    }
+    SEQ_ONE_KEY(KC_L) {
+      // Anything you can do in a macro.
+      register_code(KC_LGUI);
+      register_code(KC_L);
+      unregister_code(KC_L);
+      unregister_code(KC_LGUI);
+    }
+    SEQ_TWO_KEYS(KC_D, KC_D) {
+      SEND_STRING(SS_LCTL("a") SS_LCTL("c"));
+    }
+    SEQ_THREE_KEYS(KC_D, KC_D, KC_S) {
+      SEND_STRING("https://start.duckduckgo.com\n");
+    }
+    SEQ_TWO_KEYS(KC_A, KC_S) {
+      register_code(KC_LGUI);
+      register_code(KC_S);
+      unregister_code(KC_S);
+      unregister_code(KC_LGUI);
+    }
+  }
 }
 
-// When you add source files to SRC in rules.mk, you can use functions.
-const char *read_layer_state(void);
-const char *read_logo(void);
-void set_keylog(uint16_t keycode, keyrecord_t *record);
-const char *read_keylog(void);
-const char *read_keylogs(void);
-
-// const char *read_mode_icon(bool swap);
-// const char *read_host_led_state(void);
-// void set_timelog(void);
-// const char *read_timelog(void);
-
+#ifdef OLED_ENABLE
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+    return OLED_ROTATION_270;
+}
 bool oled_task_user(void) {
-  if (is_keyboard_master()) {
-    // If you want to change the display of OLED, you need to change here
-    oled_write_ln(read_layer_state(), false);
-    oled_write_ln(read_keylog(), false);
-    oled_write_ln(read_keylogs(), false);
-    //oled_write_ln(read_mode_icon(keymap_config.swap_lalt_lgui), false);
-    //oled_write_ln(read_host_led_state(), false);
-    //oled_write_ln(read_timelog(), false);
-  } else {
-    oled_write(read_logo(), false);
-  }
+    // Host Keyboard Layer Status
+    // oled_write_P(PSTR("Layer\n"), false);
+    oled_write_P(PSTR("-----\n"), false);
+
+    switch (get_highest_layer(layer_state)) {
+        case _QWERTY:
+            oled_write_P(PSTR("QWE\n"), false);
+            break;
+        case _LOWER:
+            oled_write_P(PSTR("LWR\n"), false);
+            break;
+        case _RAISE:
+            oled_write_P(PSTR("RSE\n"), false);
+            break;
+        case _ADJUST:
+            oled_write_P(PSTR("ADJ\n"), false);
+            break;
+        case _FIVE:
+            oled_write_P(PSTR("FVE\n"), false);
+            break;
+        default:
+            // Or use the write_ln shortcut over adding '\n' to the end of your string
+            oled_write_ln_P(PSTR("UNDEF\n"), false);
+    }
+
+    // Host Keyboard LED Status
+    led_t led_state = host_keyboard_led_state();
+    oled_write_P(led_state.num_lock ? PSTR("NUM \n") : PSTR("    \n"), false);
+    oled_write_P(led_state.caps_lock ? PSTR("CAP \n") : PSTR("    \n"), false);
+    oled_write_P(led_state.scroll_lock ? PSTR("SCR \n") : PSTR("    \n"), false);
+
     return false;
 }
-#endif // OLED_ENABLE
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {
-#ifdef OLED_ENABLE
-    set_keylog(keycode, record);
 #endif
-    // set_timelog();
-  }
-  return true;
-}

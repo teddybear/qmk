@@ -292,23 +292,18 @@ bool oled_task_user(void) {
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
             oled_write_P(PSTR("QWE\n"), false);
-            return false;
             break;
         case _LOWER:
             oled_write_P(PSTR("LWR\n"), false);
-            return false;
             break;
         case _RAISE:
             oled_write_P(PSTR("RSE\n"), false);
-            return false;
             break;
         case _ADJUST:
             oled_write_P(PSTR("ADJ\n"), false);
-            return false;
             break;
         case _FIVE:
             oled_write_P(PSTR("FVE\n"), false);
-            return false;
             break;
         default:
             // Or use the write_ln shortcut over adding '\n' to the end of your string
