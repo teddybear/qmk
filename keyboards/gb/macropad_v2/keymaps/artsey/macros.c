@@ -1,4 +1,4 @@
-bool is_shift_lock_active = false; 
+bool is_shift_lock_active = false;
 bool other_key_pressed = false;
 bool is_alt_tab_active = false; // ADD this near the begining of keymap.c;
 uint16_t key_timer = 0;
@@ -19,8 +19,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         else{
           is_shift_lock_active = false;
           unregister_code(KC_LSFT);
-        }         
-      } 
+        }
+      }
     break;
 case A_BASE_AR:
 if(record->event.pressed) {
@@ -176,18 +176,18 @@ unregister_code(KC_QUOT);
  break;
 case A_BASE_AY:
 if(record->event.pressed) {
-register_code(KC_COMMA);
-}
-else {
-unregister_code(KC_COMMA);
-}
- break;
-case A_BASE_AI:
-if(record->event.pressed) {
 register_code(KC_DOT);
 }
 else {
 unregister_code(KC_DOT);
+}
+ break;
+case A_BASE_AI:
+if(record->event.pressed) {
+register_code(KC_COMMA);
+}
+else {
+unregister_code(KC_COMMA);
 }
  break;
 case A_BASE_TI:
@@ -931,7 +931,7 @@ else {
 unregister_code(KC_CAPS);
 }
  break;
- 
+
   }
   return true;
 };
