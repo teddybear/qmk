@@ -6,6 +6,7 @@ enum layer_number {
   _RAISE,
   _ADJUST,
   _FIVE,
+  _NAVIP,
 };
 
 enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRST, KC_SAMPLEMACRO, PLOVER, EXT_PLV, XKBMAP};
@@ -34,6 +35,7 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRS
 #define TG_ISO TG(_ISO)
 #define TG_THMB TG(_THUMB_ALT)
 #define TG_FIVE TG(_FIVE)
+#define TG_NAVP TG(_NAVIP)
 
 #define RBR_RGU RGUI_T(KC_RBRC)
 #define F12_RGU RGUI_T(KC_F12)
@@ -157,7 +159,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   RESET,   TG_FIVE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   XXXXXXX, XXXXXXX, KC_BTN1, KC_BTN3, KC_BTN2, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   XXXXXXX, XXXXXXX, KC_MS_L, KC_MS_U, KC_MS_R, KC_WH_U,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-  XXXXXXX, XXXXXXX, XXXXXXX, KC_MS_D, XXXXXXX, KC_WH_D, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,\
+  XXXXXXX, XXXXXXX, XXXXXXX, KC_MS_D, XXXXXXX, KC_WH_D, TG_NAVP, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,\
                              _______, _______, _______, _______, _______,  _______, _______, _______ \
   ),
 
@@ -167,6 +169,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,\
                              TG_FIVE, _______, _______, _______, _______, _______, _______, _______ \
+  ),
+
+  [_NAVIP] = LAYOUT( \
+  _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
+  _______, _______, KC_BTN1, KC_BTN3, KC_BTN2, _______,                   _______, KC_HOME, KC_INS,  KC_PGUP, KC_SLCK, _______, \
+  _______, _______, KC_MS_L, KC_MS_U, KC_MS_R, KC_WH_U,                   _______, KC_LEFT, KC_UP,   KC_RGHT, KC_PSCR, _______, \
+  _______, _______, _______, KC_MS_D, _______, KC_WH_D, TG_NAVP, _______, _______, KC_END,  KC_DOWN, KC_PGDN, KC_PAUS, _______,\
+                             _______, _______, _______, _______, _______, _______, _______, _______ \
   )
 };
 
@@ -251,14 +261,93 @@ void matrix_scan_user(void) {
       unregister_code(KC_S);
       unregister_code(KC_LGUI);
     }
+
+    SEQ_TWO_KEYS(KC_SPC, KC_Z) {
+        register_code(KC_LSFT);
+        register_code(KC_1);
+        unregister_code(KC_1);
+        unregister_code(KC_LSFT);
+    }
+    SEQ_TWO_KEYS(KC_SPC, KC_X) {
+        register_code(KC_LSFT);
+        register_code(KC_2);
+        unregister_code(KC_2);
+        unregister_code(KC_LSFT);
+    }
+
+    SEQ_TWO_KEYS(KC_SPC, KC_C) {
+            register_code(KC_LSFT);
+            register_code(KC_3);
+            unregister_code(KC_3);
+            unregister_code(KC_LSFT);
+    }
+
+
+    SEQ_TWO_KEYS(KC_SPC, KC_V) {
+            register_code(KC_LSFT);
+            register_code(KC_4);
+            unregister_code(KC_4);
+            unregister_code(KC_LSFT);
+    }
+
+    SEQ_TWO_KEYS(KC_SPC, KC_B) {
+            register_code(KC_LSFT);
+            register_code(KC_5);
+            unregister_code(KC_5);
+            unregister_code(KC_LSFT);
+    }
+
+    SEQ_TWO_KEYS(KC_SPC, KC_N) {
+            register_code(KC_LSFT);
+            register_code(KC_6);
+            unregister_code(KC_6);
+            unregister_code(KC_LSFT);
+    }
+
+    SEQ_TWO_KEYS(KC_SPC, KC_M) {
+            register_code(KC_LSFT);
+            register_code(KC_7);
+            unregister_code(KC_7);
+            unregister_code(KC_LSFT);
+    }
+
+    SEQ_TWO_KEYS(KC_SPC, KC_COMM) {
+            register_code(KC_LSFT);
+            register_code(KC_8);
+            unregister_code(KC_8);
+            unregister_code(KC_LSFT);
+    }
+
+    SEQ_TWO_KEYS(KC_SPC, KC_DOT) {
+            register_code(KC_LSFT);
+            register_code(KC_9);
+            unregister_code(KC_9);
+            unregister_code(KC_LSFT);
+    }
+
+    SEQ_TWO_KEYS(KC_SPC, KC_SLSH) {
+            register_code(KC_LSFT);
+            register_code(KC_0);
+            unregister_code(KC_0);
+            unregister_code(KC_LSFT);
+    }
+
   }
 }
 
 #ifdef OLED_ENABLE
+const char *read_logo(void);
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-    return OLED_ROTATION_270;
+    if (is_keyboard_master()) {
+        return OLED_ROTATION_270;
+    }
+    return OLED_ROTATION_180;
 }
 bool oled_task_user(void) {
+    if (!is_keyboard_master()) {
+        oled_write(read_logo(), false);
+        return false;
+    }
     // Host Keyboard Layer Status
     // oled_write_P(PSTR("Layer\n"), false);
     oled_write_P(PSTR("-----\n"), false);
@@ -279,6 +368,9 @@ bool oled_task_user(void) {
         case _FIVE:
             oled_write_P(PSTR(" FVE\n"), false);
             break;
+        case _NAVIP:
+            oled_write_P(PSTR(" NVE\n"), false);
+            break;
         default:
             // Or use the write_ln shortcut over adding '\n' to the end of your string
             oled_write_ln_P(PSTR("UNDEF\n"), false);
@@ -288,9 +380,12 @@ bool oled_task_user(void) {
 
     // Host Keyboard LED Status
     led_t led_state = host_keyboard_led_state();
-    oled_write_P(led_state.num_lock ? PSTR(" NUM \n") : PSTR("    \n"), false);
-    oled_write_P(led_state.caps_lock ? PSTR(" CAP \n") : PSTR("    \n"), false);
-    oled_write_P(led_state.scroll_lock ? PSTR(" SCR \n") : PSTR("    \n"), false);
+    // oled_write_P(led_state.num_lock ? PSTR(" NUM \n") : PSTR("    \n"), false);
+    // oled_write_P(led_state.caps_lock ? PSTR(" CAP \n") : PSTR("    \n"), false);
+    // oled_write_P(led_state.scroll_lock ? PSTR(" SCR \n") : PSTR("    \n"), false);
+    oled_write_P(led_state.num_lock ? PSTR(" N") : PSTR("  "), false);
+    oled_write_P(led_state.caps_lock ? PSTR("C") : PSTR(" "), false);
+    oled_write_P(led_state.scroll_lock ? PSTR("S \n") : PSTR("  \n"), false);
 
     return false;
 }

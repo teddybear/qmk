@@ -1,7 +1,7 @@
 enum combos {
     OP_MENU,
     UIOP_MENU,
-    YUIO_WMENU,
+    YUIO_MENU,
     CPSL,
     CPSLL,
     EQL,

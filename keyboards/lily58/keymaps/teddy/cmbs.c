@@ -22,6 +22,8 @@ enum combos {
   RALTC,
   TY,
   TEH_LEAD,
+  ADJ,
+  ADJ_L,
 };
 
 
