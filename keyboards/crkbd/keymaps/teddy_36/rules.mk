@@ -19,7 +19,8 @@ RGBLIGHT_ENABLE = no       # Enable WS2812 RGB underlight.
 SWAP_HANDS_ENABLE = yes     # Enable one-hand typing
 TAP_DANCE_ENABLE = no
 COMBO_ENABLE = yes
-
+LEADER_ENABLE = yes
+LTO_ENABLE = yes
 BOOTLOADER = caterina
 
 # Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE

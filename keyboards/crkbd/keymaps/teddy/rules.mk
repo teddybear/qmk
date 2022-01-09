@@ -20,6 +20,7 @@ OLED_DRIVER = SSD1306    # OLED display
 SWAP_HANDS_ENABLE = yes     # Enable one-hand typing
 TAP_DANCE_ENABLE = yes
 COMBO_ENABLE = yes
+LEADER_ENABLE = yes
 LTO_ENABLE = yes
 
 BOOTLOADER = caterina

@@ -37,8 +37,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PERMISSIVE_HOLD
 // #define PERMISSIVE_HOLD_PER_KEY
 
-#define COMBO_COUNT 19
-#define COMBO_TERM 10
+#define COMBO_COUNT 25
+#define COMBO_TERM 17
+#define LEADER_TIMEOUT 500
 
 #define IGNORE_MOD_TAP_INTERRUPT
 #define TAPPING_FORCE_HOLD
