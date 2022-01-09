@@ -27,6 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define EE_HANDS
 
 #define TAPPING_TERM 135
-#define COMBO_COUNT 23
+#define COMBO_COUNT 25
 #define COMBO_TERM 17
 #define LEADER_TIMEOUT 500
