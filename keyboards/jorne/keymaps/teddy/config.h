@@ -56,5 +56,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TAPPING_TERM 135
 #define TAPPING_TERM_PER_KEY
 
-#define COMBO_COUNT 19
+#define COMBO_COUNT 25
 #define COMBO_TERM 17
