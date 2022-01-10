@@ -144,3 +144,173 @@ void persistent_default_layer_set(uint16_t default_layer) {
     eeconfig_update_default_layer(default_layer);
     default_layer_set(default_layer);
 }
+
+
+#ifdef OLED_ENABLE
+const char *read_logo(void);
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+    if (is_keyboard_master()) {
+        return OLED_ROTATION_270;
+    }
+    return OLED_ROTATION_180;
+}
+bool oled_task_user(void) {
+    if (!is_keyboard_master()) {
+        oled_write(read_logo(), false);
+        return false;
+    }
+    // Host Keyboard Layer Status
+    // oled_write_P(PSTR("Layer\n"), false);
+    oled_write_P(PSTR("-----\n"), false);
+
+    switch (get_highest_layer(layer_state)) {
+        case _QWERTY:
+            oled_write_P(PSTR(" QWE\n"), false);
+            break;
+        case _SYM:
+            oled_write_P(PSTR(" SYM\n"), false);
+            break;
+        case _SYMA:
+            oled_write_P(PSTR(" SYA\n"), false);
+            break;
+        case _NUM:
+            oled_write_P(PSTR(" NUM\n"), false);
+            break;
+        case _NAV:
+            oled_write_P(PSTR(" NAV\n"), false);
+            break;
+        case _FUN:
+            oled_write_P(PSTR(" FUN\n"), false);
+            break;
+        case _MOUSE:
+            oled_write_P(PSTR(" MSE\n"), false);
+            break;
+        default:
+            // Or use the write_ln shortcut over adding '\n' to the end of your string
+            oled_write_ln_P(PSTR("UNDEF\n"), false);
+    }
+    oled_write_P(PSTR("     "), false);
+    oled_write_P(PSTR("-----\n"), false);
+
+    // Host Keyboard LED Status
+    led_t led_state = host_keyboard_led_state();
+    // oled_write_P(led_state.num_lock ? PSTR(" NUM \n") : PSTR("    \n"), false);
+    // oled_write_P(led_state.caps_lock ? PSTR(" CAP \n") : PSTR("    \n"), false);
+    // oled_write_P(led_state.scroll_lock ? PSTR(" SCR \n") : PSTR("    \n"), false);
+    oled_write_P(led_state.num_lock ? PSTR(" N") : PSTR("  "), false);
+    oled_write_P(led_state.caps_lock ? PSTR("C") : PSTR(" "), false);
+    oled_write_P(led_state.scroll_lock ? PSTR("S \n") : PSTR("  \n"), false);
+
+    return false;
+}
+#endif
+
+LEADER_EXTERNS();
+
+void matrix_scan_user(void) {
+  LEADER_DICTIONARY() {
+    leading = false;
+    leader_end();
+
+    SEQ_ONE_KEY(KC_F) {
+      // Anything you can do in a macro.
+      SEND_STRING("QMK is awesome.");
+    }
+    SEQ_ONE_KEY(KC_L) {
+      // Anything you can do in a macro.
+      register_code(KC_LGUI);
+      register_code(KC_L);
+      unregister_code(KC_L);
+      unregister_code(KC_LGUI);
+    }
+    SEQ_TWO_KEYS(KC_D, KC_D) {
+      SEND_STRING(SS_LCTL("a") SS_LCTL("c"));
+    }
+    SEQ_THREE_KEYS(KC_D, KC_D, KC_S) {
+        SEND_STRING("https://start.duckduckgo.com\n");
+    }
+
+    SEQ_THREE_KEYS(KC_X, KC_X, KC_X) {
+        SEND_STRING("setxkbmap -model pc105 -layout us,ru -option grp:caps_toggle,lv3:ralt_switch,misc:typo -option terminate:ctrl_alt_bksp -option kpdl:dot -option grp_led:scroll\n");
+    }
+
+    SEQ_TWO_KEYS(KC_A, KC_S) {
+      register_code(KC_LGUI);
+      register_code(KC_S);
+      unregister_code(KC_S);
+      unregister_code(KC_LGUI);
+    }
+
+
+    SEQ_TWO_KEYS(KC_SPC, KC_Z) {
+        register_code(KC_LSFT);
+        register_code(KC_1);
+        unregister_code(KC_1);
+        unregister_code(KC_LSFT);
+    }
+    SEQ_TWO_KEYS(KC_SPC, KC_X) {
+        register_code(KC_LSFT);
+        register_code(KC_2);
+        unregister_code(KC_2);
+        unregister_code(KC_LSFT);
+    }
+
+    SEQ_TWO_KEYS(KC_SPC, KC_C) {
+            register_code(KC_LSFT);
+            register_code(KC_3);
+            unregister_code(KC_3);
+            unregister_code(KC_LSFT);
+    }
+
+
+    SEQ_TWO_KEYS(KC_SPC, KC_V) {
+            register_code(KC_LSFT);
+            register_code(KC_4);
+            unregister_code(KC_4);
+            unregister_code(KC_LSFT);
+    }
+
+    SEQ_TWO_KEYS(KC_SPC, KC_B) {
+            register_code(KC_LSFT);
+            register_code(KC_5);
+            unregister_code(KC_5);
+            unregister_code(KC_LSFT);
+    }
+
+    SEQ_TWO_KEYS(KC_SPC, KC_N) {
+            register_code(KC_LSFT);
+            register_code(KC_6);
+            unregister_code(KC_6);
+            unregister_code(KC_LSFT);
+    }
+
+    SEQ_TWO_KEYS(KC_SPC, KC_M) {
+            register_code(KC_LSFT);
+            register_code(KC_7);
+            unregister_code(KC_7);
+            unregister_code(KC_LSFT);
+    }
+
+    SEQ_TWO_KEYS(KC_SPC, KC_COMM) {
+            register_code(KC_LSFT);
+            register_code(KC_8);
+            unregister_code(KC_8);
+            unregister_code(KC_LSFT);
+    }
+
+    SEQ_TWO_KEYS(KC_SPC, KC_DOT) {
+            register_code(KC_LSFT);
+            register_code(KC_9);
+            unregister_code(KC_9);
+            unregister_code(KC_LSFT);
+    }
+
+    SEQ_TWO_KEYS(KC_SPC, KC_SLSH) {
+            register_code(KC_LSFT);
+            register_code(KC_0);
+            unregister_code(KC_0);
+            unregister_code(KC_LSFT);
+    }
+
+  }
+}
