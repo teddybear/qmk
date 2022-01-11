@@ -1,16 +1,3 @@
-#define LG_A LGUI_T(KC_A)
-#define LA_S LALT_T(KC_S)
-#define LS_D LSFT_T(KC_D)
-#define LC_F LCTL_T(KC_F)
-#define GR_X RALT_T(KC_X)
-#define GR_SL RALT_T(KC_SLSH)
-
-#define RG_SC RGUI_T(KC_SCLN)
-#define RA_L LALT_T(KC_L)
-#define RS_K RSFT_T(KC_K)
-#define RC_J RCTL_T(KC_J)
-#define GR_DOT RALT_T(KC_DOT)
-
 enum combos {
     OP_MENU,
     UIOP_MENU,
