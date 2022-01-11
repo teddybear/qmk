@@ -58,3 +58,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define COMBO_COUNT 25
 #define COMBO_TERM 17
+#define PERMISSIVE_HOLD_PER_KEY
