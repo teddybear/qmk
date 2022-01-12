@@ -49,7 +49,7 @@ const uint16_t PROGMEM op_combo[] = {KC_O, KC_P, COMBO_END};
 const uint16_t PROGMEM uiop_combo[] = {KC_U, KC_I, KC_O, KC_P, COMBO_END};
 const uint16_t PROGMEM yuio_combo[] = {KC_Y, KC_U, KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM ty_combo[] = {KC_T, KC_Y, COMBO_END};
-const uint16_t PROGMEM uk_combo[] = {KC_U, KC_K, COMBO_END};
+const uint16_t PROGMEM uk_combo[] = {KC_U, RS_K, COMBO_END};
 const uint16_t PROGMEM rg_combo[] = {KC_R, KC_G, COMBO_END};
 const uint16_t PROGMEM m4_combo[] = {KC_M, KC_COMM, GR_DOT, GR_SL, COMBO_END};
 

@@ -20,38 +20,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-//#define USE_MATRIX_I2C
-
-/* Select hand configuration */
-
-//#define MASTER_LEFT
-//#define MASTER_RIGHT
+#define SPLIT_USB_DETECT
 #define EE_HANDS
 
 #define USE_SERIAL_PD2
 
-// #define RGBLIGHT_ANIMATIONS
-// #define RGBLIGHT_EFFECT_ALTERNATING
-// #define RGBLIGHT_EFFECT_BREATHING
-// #define RGBLIGHT_EFFECT_CHRISTMAS
-// #define RGBLIGHT_EFFECT_KNIGHT
+#ifdef RGBLIGHT_ENABLE
+#define RGBLIGHT_EFFECT_BREATHING
 #define RGBLIGHT_EFFECT_RAINBOW_MOOD
 // #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
-// #define RGBLIGHT_EFFECT_RGB_TEST
-// #undef OLED_ENABLE
-#define RGBLIGHT_EFFECT_SNAKE
+// #define RGBLIGHT_EFFECT_SNAKE
+// #define RGBLIGHT_EFFECT_KNIGHT
+// #define RGBLIGHT_EFFECT_CHRISTMAS
 #define RGBLIGHT_EFFECT_STATIC_GRADIENT
-// #define RGBLIGHT_EFFECT_TWINKLE
+// #define RGBLIGHT_EFFECT_RGB_TEST
+// #define RGBLIGHT_EFFECT_ALTERNATING
+#define RGBLIGHT_EFFECT_TWINKLE
+#define RGBLIGHT_HUE_STEP 8
+#define RGBLIGHT_SAT_STEP 8
+#define RGBLIGHT_VAL_STEP 8
+#endif
 
-#define RGBLIGHT_LIMIT_VAL 120
-#define RGBLIGHT_HUE_STEP 10
-#define RGBLIGHT_SAT_STEP 17
-#define RGBLIGHT_VAL_STEP 17
-
-#define SPLIT_USB_DETECT
-
-// #define OLED_TIMEOUT 10000
-// #define OLED_ENABLE
+// If you are using an Elite C rev3 on the slave side, uncomment the lines below:
+// #define SPLIT_USB_DETECT
+// #define NO_USB_STARTUP_CHECK
 
 #define TAPPING_TERM 135
 #define TAPPING_TERM_PER_KEY
@@ -59,3 +51,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define COMBO_COUNT 25
 #define COMBO_TERM 17
 #define PERMISSIVE_HOLD_PER_KEY
+#define LEADER_TIMEOUT 500
