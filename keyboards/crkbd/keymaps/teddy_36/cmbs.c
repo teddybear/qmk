@@ -29,7 +29,7 @@ enum combos {
 
 const uint16_t PROGMEM jk_combo[] = {RC_J, RS_K, COMBO_END};
 const uint16_t PROGMEM df_combo[] = {LS_D, LC_F, COMBO_END};
-const uint16_t PROGMEM ui_combo[] = {RA_L, RG_SC, COMBO_END};
+const uint16_t PROGMEM ui_combo[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM lsemi_combo[] = {RA_L, RG_SC, COMBO_END};
 const uint16_t PROGMEM mcomm_combo[] = {KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM rt_combo[] = {KC_R, KC_T, COMBO_END};

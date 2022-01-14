@@ -37,14 +37,14 @@ extern uint8_t is_master;
 enum layer_number {
     _QWERTY = 0,
     _SYM,
-    _SYMA,
     _NUM,
     _NAV,
     _FUN,
     _MOUSE,
+    _SYMA,
 };
 
-enum custom_keycodes { QWERTY = SAFE_RANGE, SYM, SYMA, NUM, NAV, FUN, MOUSE};
+enum custom_keycodes { QWERTY = SAFE_RANGE, SYM, NUM, NAV, FUN, MOUSE, SYMA};
 
 #define KC______ KC_TRNS
 #define KC_XXXXX KC_NO
@@ -138,7 +138,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 
-uint32_t layer_state_set_user(uint32_t state) { return update_tri_layer_state(state, _SYM, _NAV, _SYMA); }
+uint32_t layer_state_set_user(uint32_t state) {
+    return update_tri_layer_state(state, _SYM, _NAV, _SYMA);
+}
 
 void persistent_default_layer_set(uint16_t default_layer) {
     eeconfig_update_default_layer(default_layer);
@@ -170,9 +172,6 @@ bool oled_task_user(void) {
         case _SYM:
             oled_write_P(PSTR(" SYM\n"), false);
             break;
-        case _SYMA:
-            oled_write_P(PSTR(" SYA\n"), false);
-            break;
         case _NUM:
             oled_write_P(PSTR(" NUM\n"), false);
             break;
@@ -184,6 +183,9 @@ bool oled_task_user(void) {
             break;
         case _MOUSE:
             oled_write_P(PSTR(" MSE\n"), false);
+            break;
+        case _SYMA:
+            oled_write_P(PSTR(" SYA\n"), false);
             break;
         default:
             // Or use the write_ln shortcut over adding '\n' to the end of your string
