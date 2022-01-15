@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SPLIT_USB_DETECT
 
 //#define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 200
+#define TAPPING_TERM 155
 // #define TAPPING_TERM_PER_KEY
 #define PERMISSIVE_HOLD
 // #define PERMISSIVE_HOLD_PER_KEY
