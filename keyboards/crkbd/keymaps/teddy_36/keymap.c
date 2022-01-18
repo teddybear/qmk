@@ -42,11 +42,9 @@ enum layer_number {
     _FUN,
     _MOUSE,
     _SYMA,
-    _LSYM,
-    _LNUM,
 };
 
-enum custom_keycodes { QWERTY = SAFE_RANGE, SYM, NUM, NAV, FUN, MOUSE, SYMA, LSYM, LNUM};
+enum custom_keycodes { QWERTY = SAFE_RANGE, SYM, NUM, NAV, FUN, MOUSE, SYMA};
 
 #define KC______ KC_TRNS
 #define KC_XXXXX KC_NO
@@ -135,21 +133,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_EXLM, KC_AT,   KC_HASH,  KC_DLR,   KC_PERC,                   KC_CIRC, KC_AMPR,    KC_ASTR, KC_LPRN, KC_RPRN, \
             KC_1,    KC_2,    KC_3,     KC_4,     KC_5,                      KC_6,    KC_7,       KC_8,    KC_9,    KC_0,     \
                                     _______, _______,  _______,          _______, _______, _______\
-    ),
-    [_LSYM] = LAYOUT(\
-            _______,  _______,   _______, _______, _______,                  _______,   KC_HOME,   KC_INS,  KC_PGUP,   KC_DQT,       \
-            _______,  _______,   _______, _______, _______,                  KC_CAPS,   KC_LEFT,   KC_UP,   KC_RGHT,   KC_QUOT,        \
-            _______,  _______,   _______, _______, _______,                  _______,   KC_END,    KC_DOWN, KC_PGDN,   KC_BSLS,       \
-                                    _______, _______, _______,            _______, _______,  _______ \
-    ),
-    [_LNUM] = LAYOUT(\
-            _______,  _______,   _______, _______, _______,                  _______,   KC_HOME,   KC_INS,  KC_PGUP,   KC_DQT,       \
-            _______,  _______,   _______, _______, _______,                  KC_CAPS,   KC_LEFT,   KC_UP,   KC_RGHT,   KC_QUOT,        \
-            _______,  _______,   _______, _______, _______,                  _______,   KC_END,    KC_DOWN, KC_PGDN,   KC_BSLS,       \
-                                    _______, _______, _______,            _______, _______,  _______ \
     )
-
-
 };
 
 
