@@ -24,6 +24,7 @@ enum combos {
     TEH_LEAD,
     ENTT,
     SPC4,
+    F_ONE,
 };
 
 
@@ -52,6 +53,7 @@ const uint16_t PROGMEM ty_combo[] = {KC_T, KC_Y, COMBO_END};
 const uint16_t PROGMEM uk_combo[] = {KC_U, KC_K, COMBO_END};
 const uint16_t PROGMEM rg_combo[] = {KC_R, KC_G, COMBO_END};
 const uint16_t PROGMEM m4_combo[] = {KC_M, KC_COMM, KC_DOT, KC_SLSH, COMBO_END};
+const uint16_t PROGMEM grvq_combo[] = {LGUI_T(KC_MINS), KC_F2, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     [CPSL] = COMBO(jk_combo, KC_CAPS),
@@ -82,6 +84,7 @@ combo_t key_combos[COMBO_COUNT] = {
     [TEH_LEAD] = COMBO(uk_combo, KC_LEAD),
     [ENTT] = COMBO(rg_combo, KC_ENT),
     [SPC4] = COMBO(m4_combo, KC_SPC),
+    [F_ONE] = COMBO(grvq_combo, KC_F1),
 };
 
 // void process_combo_event(uint16_t combo_index, bool pressed) {
