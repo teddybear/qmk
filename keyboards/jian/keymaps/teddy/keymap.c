@@ -1,117 +1,201 @@
 #include QMK_KEYBOARD_H
 
-enum jian_layers {
-  _QWERTY,
-  _DVORAK,
-  _COLEMAK,
-  _WORKMAN,
-  _LOWER,
-  _RAISE,
-  _ADJUST,
-  _BCKLT_ADJ
+
+enum layers {
+    _QWERTY = 0,
+    _LOWER,
+    _RAISE,
+    _ADJUST,
+    _FIVE,
 };
 
-enum jian_keycodes {
-  QWERTY = SAFE_RANGE,
-  DVORAK,
-  COLEMAK,
-  WORKMAN,
-  XKBMAP,
-};
+enum custom_keycodes { RGBRST = SAFE_RANGE, KC_SAMPLEMACRO, XKBMAP};
 
-#define RAISE_T(kc) LT(_RAISE, kc)
-#define LOWER_T(kc) LT(_LOWER, kc)
+// #define LOWER MO(_LOWER)
+// #define RAISE MO(_RAISE)
+#define TG_FIVE TG(_FIVE)
 
-#ifdef SWAP_HANDS_ENABLE
-#define SW_TG SH_TG
-#else
-#define SW_TG _______
+#define RBR_RGU RGUI_T(KC_RBRC)
+#define F12_RGU RGUI_T(KC_F12)
+#define PLS_LCT LCTL_T(KC_PPLS)
+#define EQL_LCT LCTL_T(KC_PEQL)
+#define APP_LCT LCTL_T(KC_APP)
+#define EQL_RCT RCTL_T(KC_PEQL)
+#define QUO_RCT RCTL_T(KC_QUOT)
+#define APP_RCT RCTL_T(KC_APP)
+#define MIN_RCT RCTL_T(KC_MINS)
+#define EQL_LAL LALT_T(KC_EQL)
+#define BSL_RAL RALT_T(KC_BSLS)
+
+#define BSP_RSH RSFT_T(KC_BSPC)
+#define SPC_LSH LSFT_T(KC_SPC)
+#define SPC_RSH RSFT_T(KC_SPC)
+#define SPC_LWR LT(_LOWER, KC_SPC)
+#define BSP_LWR LT(_LOWER, KC_BSPC)
+#define DEL_RSE LT(_RAISE, KC_DEL)
+#define TAB_RSE LT(_RAISE, KC_TAB)
+#define ENT_LWR LT(_LOWER, KC_ENT)
+#define ESC_LWR LT(_LOWER, KC_ESC)
+#define ESC_LGUI LGUI_T(KC_ESC)
+
+#include "hld.c"
+
+#ifdef COMBO_ENABLE
+#include "cmbs.c"
 #endif
 
-// #include "taps.c"
-// #include "hld.c"
-#include "cmbs.c"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+    [_QWERTY] = LAYOUT(\
+    ESC_LGUI, KC_GRV,   KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,             KC_Y,    KC_U,    KC_I,       KC_O,    KC_P,    KC_LBRC, RGUI_T(KC_RBRC), \
+              KC_LCTL,  KC_A,    KC_S,    KC_D,    KC_F,     KC_G,             KC_H,    KC_J,    KC_K,       KC_L,    KC_SCLN, RCTL_T(KC_QUOT), \
+              KC_LALT,  KC_Z,    KC_X,    KC_C,    KC_V,     KC_B,             KC_N,    KC_M,    KC_COMM,    KC_DOT,  KC_SLSH, BSL_RAL, \
+                                        TAB_RSE, SPC_LSH, ESC_LWR,             ENT_LWR, BSP_RSH, DEL_RSE \
+    ),
 
-[_QWERTY] = LAYOUT(
-  LGUI_T(KC_ESC), KC_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,         RGUI_T(KC_RBRC),
-                  KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, RCTL_T(KC_QUOT),
-                  KC_LALT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,      KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RALT_T(KC_BSLS),
-                  RAISE_T(KC_TAB),  LSFT_T(KC_SPC),   LOWER_T(KC_ESC),    LOWER_T(KC_ENT), RSFT_T(KC_BSPC), RAISE_T(KC_DEL)
-),
+    [_LOWER] = LAYOUT(\
+    _______,  KC_UNDS,  KC_F1,   KC_F2,   KC_F3,   KC_F4,    KC_F5,            KC_F6,   KC_F7,   KC_F8,      KC_F9,   KC_F10,  KC_F11,  F12_RGU, \
+              PLS_LCT,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,   KC_PERC,          KC_CIRC, KC_AMPR, KC_ASTR,    KC_LPRN, KC_RPRN, MIN_RCT, \
+              EQL_LAL,  KC_1,    KC_2,    KC_3,    KC_4,     KC_5,             KC_6,    KC_7,    KC_8,       KC_9,    KC_0,    _______, \
+                                          _______, _______,  _______,          _______, _______, _______\
+    ),
 
-[_DVORAK] = LAYOUT(
-  KC_LGUI, KC_GRV,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,      KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_LBRC,         RGUI_T(KC_RBRC),
-           KC_LCTL, KC_A,    KC_O,    KC_E,    KC_U,    KC_I,      KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    RCTL_T(KC_SLSH),
-           KC_LALT, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,      KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    RALT_T(KC_BSLS),
-           RAISE_T(KC_TAB), LSFT_T(KC_SPC), LOWER_T(KC_ENT),       LOWER_T(KC_ESC), RSFT_T(KC_BSPC), RAISE_T(KC_DEL)
-),
+    [_RAISE] = LAYOUT(\
+    _______,  KC_NLCK,  KC_PSLS, KC_7,    KC_8,    KC_9,     KC_MINS,          KC_VOLU, KC_HOME, KC_INS,     KC_PGUP, KC_SLCK, KC_CAPS, _______, \
+              EQL_LCT,  KC_PAST, KC_4,    KC_5,    KC_6,     KC_PPLS,          KC_MUTE, KC_LEFT, KC_UP,      KC_RGHT, KC_PSCR, APP_RCT, \
+              _______,  KC_0,    KC_1,    KC_2,    KC_3,     KC_PCMM,          KC_VOLD, KC_END,  KC_DOWN,    KC_PGDN, KC_PAUS, _______, \
+                                          _______, _______,  _______,          _______, _______, _______\
+    ),
 
-[_COLEMAK] = LAYOUT(
-  KC_LGUI, KC_GRV,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,      KC_J,    KC_L,    KC_U,    KC_Y,   KC_SCLN, KC_LBRC,         RGUI_T(KC_RBRC),
-           KC_LCTL, KC_A,    KC_R,    KC_S,    KC_T,    KC_D,      KC_H,    KC_N,    KC_E,    KC_I,   KC_O,    RCTL_T(KC_QUOT),
-           KC_LALT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,      KC_K,    KC_M,    KC_COMM, KC_DOT, KC_SLSH, RALT_T(KC_BSLS),
-           RAISE_T(KC_TAB), LSFT_T(KC_SPC), LOWER_T(KC_ENT),       LOWER_T(KC_ESC), RSFT_T(KC_BSPC), RAISE_T(KC_DEL)
-),
+    [_ADJUST] = LAYOUT(\
+    RESET,  CMB_ON,     KC_ASUP, KC_BTN1, KC_BTN3, KC_BTN2,  XKBMAP,           _______, _______,   KC_ASDN,    KC_ASTG, KC_ASUP, CMB_ON,   RESET, \
+            CMB_TOG,    RGB_HUI, KC_MS_L, KC_MS_U, KC_MS_R,  KC_WH_U,          KC_LEFT, KC_DOWN,  KC_UP,      KC_RGHT, RGB_HUI, CMB_TOG, \
+            CMB_OFF,    TG_FIVE, RGB_SAD, KC_MS_D, _______,   KC_WH_D,          _______, _______,   RGB_VAD,    RGB_SAD, TG_FIVE, CMB_OFF, \
+                                           _______, SH_TG,   _______,          _______, SH_TG,   _______\
+    ),
 
-[_WORKMAN] = LAYOUT(
-  KC_LGUI, KC_GRV,  KC_Q,    KC_D,    KC_R,    KC_W,    KC_B,      KC_J,    KC_F,    KC_U,    KC_P,   KC_SCLN, KC_LBRC,         RGUI_T(KC_RBRC),
-           KC_LCTL, KC_A,    KC_S,    KC_H,    KC_T,    KC_G,      KC_Y,    KC_N,    KC_E,    KC_O,   KC_I,    RCTL_T(KC_QUOT),
-           KC_LALT, KC_Z,    KC_X,    KC_M,    KC_C,    KC_V,      KC_K,    KC_L,    KC_COMM, KC_DOT, KC_SLSH, RALT_T(KC_BSLS),
-                    RAISE_T(KC_TAB), LSFT_T(KC_SPC), LOWER_T(KC_ENT),      LOWER_T(KC_ESC), RSFT_T(KC_BSPC), RAISE_T(KC_DEL)
-),
-
-[_LOWER] = LAYOUT(
-  _______, KC_UNDS,         KC_F1,   KC_F2, KC_F3,   KC_F4,   KC_F5,        KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,          RGUI_T(KC_F12),
-           LCTL_T(KC_EQL),  KC_EXLM, KC_AT, KC_HASH, KC_DLR,  KC_PERC,      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, RCTL_T(KC_MINS),
-           LALT_T(KC_PPLS), KC_1,    KC_2,  KC_3,    KC_4,    KC_5,         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-                                            _______, _______, _______,      _______, _______, _______
-),
-
-[_RAISE] = LAYOUT(
-  _______, KC_NLCK,         KC_PSLS, KC_7,     KC_8,    KC_9,   KC_PMNS,      KC_VOLU, KC_HOME, KC_INS,  KC_PGUP, KC_SLCK, KC_CAPS,        _______,
-           LCTL_T(KC_EQL),  KC_PAST, KC_4,     KC_5,    KC_6,   KC_PPLS,      KC_MUTE, KC_LEFT, KC_UP,   KC_RGHT, KC_PSCR, RCTL_T(KC_APP),
-           _______,         KC_0,    KC_1,     KC_2,    KC_3,   KC_PCMM,      KC_VOLD, KC_END,  KC_DOWN, KC_PGDN, KC_PAUS, _______,
-                                              _______, _______, _______,      _______, _______, _______
-),
-
-[_ADJUST] = LAYOUT_symmetric(
-  RESET,    CMB_ON,  DEBUG,          KC_BTN1, KC_BTN3, KC_BTN2,  XKBMAP,
-            CMB_TOG, XXXXXXX,        KC_MS_L, KC_MS_U, KC_MS_R,  KC_WH_U,
-            CMB_OFF, TG(_BCKLT_ADJ), XXXXXXX, KC_MS_D, XXXXXXX,  KC_WH_D,
-                                             _______, SW_TG,   _______
-),
-
+    [_FIVE] = LAYOUT(\
+    RESET,   RGBRST,  KC_ASUP, KC_ASTG, KC_ASDN, _______, _______,             _______, _______,  KC_ASDN, KC_ASTG, KC_ASUP, RGBRST,   RESET, \
+             RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, _______,  _______,            _______,  _______,  RGB_VAI, RGB_SAI, RGB_HUI, RGB_TOG, \
+             RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, TG_FIVE,  _______,            _______, _______,   RGB_VAD, RGB_SAD, RGB_HUD, RGB_MOD, \
+                                         _______, SH_TG,   _______,            _______, SH_TG,   _______\
+    ),
 
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case QWERTY:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_QWERTY);
-      }
-      return false;
-    case DVORAK:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_DVORAK);
-      }
-      return false;
-    case COLEMAK:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_COLEMAK);
-      }
-      return false;
-    case WORKMAN:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_WORKMAN);
-      }
-      return false;
-  }
-  return true;
+LEADER_EXTERNS();
+
+void matrix_scan_user(void) {
+    LEADER_DICTIONARY() {
+        leading = false;
+        leader_end();
+
+        SEQ_ONE_KEY(KC_F) {
+        // Anything you can do in a macro.
+            SEND_STRING("QMK is awesome.");
+        }
+
+        SEQ_ONE_KEY(KC_L) {
+        // Anything you can do in a macro.
+            register_code(KC_LGUI);
+            register_code(KC_L);
+            unregister_code(KC_L);
+            unregister_code(KC_LGUI);
+        }
+
+        SEQ_TWO_KEYS(KC_D, KC_D) {
+            SEND_STRING(SS_LCTL("a") SS_LCTL("c"));
+        }
+
+        SEQ_THREE_KEYS(KC_D, KC_D, KC_S) {
+            SEND_STRING("https://start.duckduckgo.com\n");
+        }
+
+        SEQ_THREE_KEYS(KC_X, KC_X, KC_X) {
+            SEND_STRING("setxkbmap -model pc105 -layout us,ru -option grp:caps_toggle,lv3:ralt_switch,misc:typo -option terminate:ctrl_alt_bksp -option kpdl:dot -option grp_led:scroll\n");
+        }
+
+        SEQ_TWO_KEYS(KC_A, KC_S) {
+            register_code(KC_LGUI);
+            register_code(KC_S);
+            unregister_code(KC_S);
+            unregister_code(KC_LGUI);
+        }
+
+        SEQ_TWO_KEYS(KC_SPC, KC_Z) {
+            register_code(KC_LSFT);
+            register_code(KC_1);
+            unregister_code(KC_1);
+            unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_SPC, KC_X) {
+            register_code(KC_LSFT);
+            register_code(KC_2);
+            unregister_code(KC_2);
+            unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_SPC, KC_C) {
+                register_code(KC_LSFT);
+                register_code(KC_3);
+                unregister_code(KC_3);
+                unregister_code(KC_LSFT);
+        }
+
+
+        SEQ_TWO_KEYS(KC_SPC, KC_V) {
+                register_code(KC_LSFT);
+                register_code(KC_4);
+                unregister_code(KC_4);
+                unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_SPC, KC_B) {
+                register_code(KC_LSFT);
+                register_code(KC_5);
+                unregister_code(KC_5);
+                unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_SPC, KC_N) {
+                register_code(KC_LSFT);
+                register_code(KC_6);
+                unregister_code(KC_6);
+                unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_SPC, KC_M) {
+                register_code(KC_LSFT);
+                register_code(KC_7);
+                unregister_code(KC_7);
+                unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_SPC, KC_COMM) {
+                register_code(KC_LSFT);
+                register_code(KC_8);
+                unregister_code(KC_8);
+                unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_SPC, KC_DOT) {
+                register_code(KC_LSFT);
+                register_code(KC_9);
+                unregister_code(KC_9);
+                unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_SPC, KC_SLSH) {
+                register_code(KC_LSFT);
+                register_code(KC_0);
+                unregister_code(KC_0);
+                unregister_code(KC_LSFT);
+        }
+    }
 }
+

@@ -19,10 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 
-#define IGNORE_MOD_TAP_INTERRUPT
-#define TAPPING_TERM 140
-// #define TAPPING_TERM_PER_KEY
-#define PERMISSIVE_HOLD
+#define TAPPING_TERM 155
+#define COMBO_COUNT 25
+#define COMBO_TERM 17
+#define LEADER_TIMEOUT 700
 #define PERMISSIVE_HOLD_PER_KEY
-#define COMBO_COUNT 19
-#define COMBO_TERM 10

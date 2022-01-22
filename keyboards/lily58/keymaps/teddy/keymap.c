@@ -7,6 +7,7 @@ enum layer_number {
   _ADJUST,
   _FIVE,
   _NAVIP,
+  _NUML,
 };
 
 enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRST, KC_SAMPLEMACRO, PLOVER, EXT_PLV, XKBMAP};
@@ -62,6 +63,7 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, ADJUST, BACKLIT, RGBRS
 #define TAB_RSE LT(_RAISE, KC_TAB)
 #define ENT_LWR LT(_LOWER, KC_ENT)
 #define ESC_LWR LT(_LOWER, KC_ESC)
+#define LRC_NUM LT(_NUML, KC_LBRC)
 #define ESC_LGUI LGUI_T(KC_ESC)
 
 #include "hld.c"
@@ -88,8 +90,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV, \
   KC_GRV,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, \
   KC_LCTRL, KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, RCTL_T(KC_QUOT), \
-  KC_LALT,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, KC_LBRC,  KC_RBRC,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  BSL_RAL, \
-                        KC_LGUI, TAB_RSE, SPC_LSH,    ESC_LWR,  ENT_LWR,  BSP_RSH,  DEL_RSE, KC_RGUI \
+  KC_LALT,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, LRC_NUM,  KC_RBRC,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  BSL_RAL, \
+                        KC_LGUI, TAB_RSE, SPC_LSH,   ESC_LWR,  ENT_LWR,  BSP_RSH,  DEL_RSE, KC_RGUI \
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -177,6 +179,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, KC_MS_L, KC_MS_U, KC_MS_R, KC_WH_U,                   _______, KC_LEFT, KC_UP,   KC_RGHT, KC_PSCR, _______, \
   _______, _______, _______, KC_MS_D, _______, KC_WH_D, TG_NAVP, _______, _______, KC_END,  KC_DOWN, KC_PGDN, KC_PAUS, _______,\
                              _______, _______, _______, _______, _______, _______, _______, _______ \
+  ),
+
+  [_NUML] = LAYOUT( \
+  KC_GRV, _______, _______, _______, _______, _______,                     _______, _______, _______,_______, _______, _______,\
+  KC_NLCK, KC_PSLS, KC_7,   KC_8,   KC_9,    KC_MINS,                      KC_PSLS, KC_7,    KC_8,   KC_9,    KC_MINS, _______, \
+  EQL_LCT, KC_PAST, KC_4,   KC_5,   KC_6,    KC_PPLS,                      KC_PAST, KC_4,    KC_5,   KC_6,    KC_PPLS, _______, \
+  _______, KC_0,    KC_1,   KC_2,   KC_3,    KC_PCMM,   _______, _______,  KC_0,    KC_1,    KC_2,   KC_3,    KC_PCMM, _______, \
+                             _______, _______, _______, _______, _______, _______,  KC_0, _______ \
   )
 };
 
@@ -379,9 +389,13 @@ bool oled_task_user(void) {
         case _NAVIP:
             oled_write_P(PSTR(" NVE\n"), false);
             break;
+        case _NUML:
+            oled_write_P(PSTR(" NUM\n"), false);
+            break;
         default:
             // Or use the write_ln shortcut over adding '\n' to the end of your string
             oled_write_ln_P(PSTR("UNDEF\n"), false);
+            break;
     }
     oled_write_P(PSTR("     "), false);
     oled_write_P(PSTR("-----\n"), false);

@@ -29,5 +29,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TAPPING_TERM 155
 #define COMBO_COUNT 25
 #define COMBO_TERM 17
-#define LEADER_TIMEOUT 500
+#define LEADER_TIMEOUT 700
 #define PERMISSIVE_HOLD_PER_KEY
