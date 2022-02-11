@@ -13,17 +13,18 @@ AUDIO_ENABLE = no           # Audio output on port C6
 MUSIC_ENABLE = no
 UNICODE_ENABLE = no         # Unicode
 BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
-# SPACE_CADET_ENABLE = no
-# GRAVE_ESC_ENABLE = no
+SPACE_CADET_ENABLE = no
+GRAVE_ESC_ENABLE = no
+MAGIC_ENABLE = no
 
 MOUSEKEY_ENABLE = yes        # Mouse keys(+4700)
 EXTRAKEY_ENABLE = yes       # Audio control and System control(+450)
 LTO_ENABLE = yes
-RGBLIGHT_ENABLE = no      # Enable WS2812 RGB underlight.
+RGBLIGHT_ENABLE = yes      # Enable WS2812 RGB underlight.
 
 OLED_ENABLE = yes
 # OLED_DRIVER = SSD1306
-COMBO_ENABLE = no
+COMBO_ENABLE = yes
 LEADER_ENABLE = yes
 
 # Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE

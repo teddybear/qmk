@@ -123,14 +123,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                           _______, _______,  _______,          _______, _______, _______\
     ),
 
-    [_ADJUST] = LAYOUT(\
-            CMB_ON,     RESET, KC_BTN1, KC_BTN3,   KC_BTN2,    XKBMAP,         _______, QWERTY,   KC_ASDN,    KC_ASTG, RESET,   CMB_ON,  \
+    /*[_ADJUST] = LAYOUT(\
+            CMB_ON,     RESET,   KC_BTN1, KC_BTN3, KC_BTN2,  XKBMAP,           _______, QWERTY,   KC_ASDN,    KC_ASTG, RESET,   CMB_ON,  \
             CMB_TOG,    RGB_HUI, KC_MS_L, KC_MS_U, KC_MS_R,  KC_WH_U,          KC_LEFT, KC_DOWN,  KC_UP,      KC_RGHT, RGB_HUI, CMB_TOG, \
             CMB_OFF,    TG_FIVE, RGB_SAD, KC_MS_D, TG_ISO,   KC_WH_D,          TG_THMB, TG_ISO,   RGB_VAD,    RGB_SAD, TG_FIVE, CMB_OFF, \
                                            _______, SH_TG,   _______,          _______, SH_TG,   _______\
+    ),*/
+
+    [_ADJUST] = LAYOUT(\
+            _______,    RESET,   KC_BTN1, KC_BTN3, KC_BTN2,  XKBMAP,           _______, _______,  _______,   _______, RESET,   _______, \
+            _______,    _______, KC_MS_L, KC_MS_U, KC_MS_R,  KC_WH_U,          KC_LEFT, KC_DOWN,  KC_UP,     KC_RGHT, RGB_HUI, _______, \
+            _______,    TG_FIVE, _______, KC_MS_D, _______,  KC_WH_D,          _______, _______,  _______,   _______, TG_FIVE, _______, \
+                                           _______, SH_TG,   _______,          _______, SH_TG,    _______\
     ),
 
-
+/*
     [_THUMB_ALT] = LAYOUT(\
              _______, _______, _______, _______, _______, _______,             _______, _______, _______, _______, _______, _______, \
              _______, _______, _______, _______, _______, _______,             _______, _______, _______, _______, _______, _______, \
@@ -139,13 +146,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_ISO] = LAYOUT(\
-            _______,        _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
+            _______,         _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
             LCTL_T(KC_NUBS), _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
             LALT_T(KC_NUHS), _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, KC_RALT, \
                                                _______, _______, _______,      _______, _______, _______\
     ),
 
-/*
     // [_FIVE] = LAYOUT(\
     // _______, _______,         _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, _______, \
     //         LCTL_T(KC_NUBS), _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
@@ -154,7 +160,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // ),
 */
     [_FIVE] = LAYOUT(\
-             RGBRST,  RESET, KC_ASTG, KC_ASDN, _______, _______,               _______, _______,  KC_ASDN, KC_ASTG, RESET, RGBRST, \
+             RGBRST,  RESET,   KC_ASTG, KC_ASDN, _______, _______,             _______, _______,  KC_ASDN, KC_ASTG, RESET, RGBRST, \
              RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, QWERTY,  _______,             _______,  QWERTY,  RGB_VAI, RGB_SAI, RGB_HUI, RGB_TOG, \
              RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, TG_FIVE,  TG_THMB,            TG_THMB, TG_ISO,   RGB_VAD, RGB_SAD, RGB_HUD, RGB_MOD, \
                                          _______, SH_TG,   _______,            _______, SH_TG,   _______\
