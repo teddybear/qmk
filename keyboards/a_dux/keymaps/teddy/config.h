@@ -5,7 +5,7 @@
 #define PERMISSIVE_HOLD
 // #define PERMISSIVE_HOLD_PER_KEY
 
-#define COMBO_COUNT 28
+#define COMBO_COUNT 29
 #define COMBO_TERM 17
 #define LEADER_TIMEOUT 500
 

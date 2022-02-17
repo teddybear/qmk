@@ -27,6 +27,7 @@ enum combos {
     BKSPC,
     DL,
     YJK,
+    UKL,
 };
 
 
@@ -58,6 +59,7 @@ const uint16_t PROGMEM m4_combo[] = {KC_M, KC_COMM, GR_DOT, GR_SL, COMBO_END};
 const uint16_t PROGMEM uh_combo[] = {KC_U, KC_H, COMBO_END};
 const uint16_t PROGMEM yj_combo[] = {KC_Y, RC_J, COMBO_END};
 const uint16_t PROGMEM yjk_combo[] = {KC_Y, RC_J, RS_K, COMBO_END};
+const uint16_t PROGMEM ukl_combo[] = {RC_J, RS_K, RA_L, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     [CPSL] = COMBO(jk_combo, KC_CAPS),
@@ -91,6 +93,7 @@ combo_t key_combos[COMBO_COUNT] = {
     [BKSPC] = COMBO(uh_combo, KC_BSPC),
     [DL] = COMBO(yj_combo, KC_DEL),
     [YJK] = COMBO(yjk_combo, KC_TAB),
+    [UKL] = COMBO(ukl_combo, KC_TAB),
 };
 
 // void process_combo_event(uint16_t combo_index, bool pressed) {
