@@ -11,10 +11,10 @@ enum layer_number {
     _NAV,
     _FUN,
     _MOUSE,
-    _SYMA,
+    _NAVA,
 };
 
-enum custom_keycodes { QWERTY = SAFE_RANGE, SYM, NUM, NAV, FUN, MOUSE, SYMA};
+enum custom_keycodes { QWERTY = SAFE_RANGE, SYM, NUM, NAV, FUN, MOUSE, A};
 
 #define KC______ KC_TRNS
 #define KC_XXXXX KC_NO
@@ -24,7 +24,7 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, SYM, NUM, NAV, FUN, MOUSE, SYMA};
 
 
 #define SYM MO(_SYM)
-#define SYMA MO(_SYMA)
+// #define NAVA MO(_NAVA)
 #define NUM MO(_NUM)
 #define NAV MO(_NAV)
 #define FUN MO(_FUN)
@@ -74,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_LBRC,   KC_7,    KC_8,    KC_9,   KC_RBRC,                    _______,  _______,   _______, _______, _______,
             KC_SCLN,   KC_4,    KC_5,    KC_6,   KC_EQL,                     _______,  _______,   _______, _______, _______,
             KC_GRV,    KC_1,    KC_2,    KC_3,   KC_BSLS,                    _______,  _______,   _______, _______, _______,
-                                                _______, KC_MINS,     _______, _______
+                                                KC_0, KC_MINS,     _______, _______
     ),
     [_FUN] = LAYOUT(
             KC_F12,   KC_F7,    KC_F8,    KC_F9,   KC_PSCR,                 _______,  _______,   _______, _______, _______,
@@ -87,7 +87,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             _______,  _______,   _______, _______, _______,                  KC_MUTE,   KC_LEFT,   KC_UP,   KC_RGHT,   KC_QUOT,
             _______,  _______,   _______, _______, _______,                  KC_VOLD,   KC_END,    KC_DOWN, KC_PGDN,   KC_BSLS,
                                                 _______, _______,           _______, _______
+    ),
+    [_NAVA] = LAYOUT(
+            RESET,    _______,   _______, _______, _______,                  KC_VOLU,   KC_HOME,   KC_INS,  KC_PGUP,   KC_DQT,
+            _______,  _______,   _______, _______, _______,                  KC_MUTE,   KC_LEFT,   KC_UP,   KC_RGHT,   KC_QUOT,
+            _______,  _______,   _______, _______, _______,                  KC_VOLD,   KC_END,    KC_DOWN, KC_PGDN,   KC_BSLS,
+                                                _______, _______,           _______, _______
     )
+};
+
+uint32_t layer_state_set_user(uint32_t state) {
+    return update_tri_layer_state(state, _SYM, _NUM, _NAVA);
 };
 
 LEADER_EXTERNS();
