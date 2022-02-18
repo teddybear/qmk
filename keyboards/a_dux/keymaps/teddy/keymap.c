@@ -12,9 +12,10 @@ enum layer_number {
     _FUN,
     _MOUSE,
     _NAVA,
+    _SYMA,
 };
 
-enum custom_keycodes { QWERTY = SAFE_RANGE, SYM, NUM, NAV, FUN, MOUSE, A};
+enum custom_keycodes { QWERTY = SAFE_RANGE, SYM, NUM, NAV, FUN, MOUSE,};
 
 #define KC______ KC_TRNS
 #define KC_XXXXX KC_NO
@@ -44,10 +45,10 @@ enum custom_keycodes { QWERTY = SAFE_RANGE, SYM, NUM, NAV, FUN, MOUSE, A};
 #define GR_DOT RALT_T(KC_DOT)
 
 // #define TAB_FUN LT(_FUN, KC_TAB)
-#define SPC_NAV LT(_NAV, KC_SPC)
-#define ESC_FUN LT(_FUN, KC_ESC)
+#define SPC_FUN LT(_FUN, KC_SPC)
+#define ESC_NUM LT(_NUM, KC_ESC)
 #define ENT_NUM LT(_NUM, KC_ENT)
-#define BSP_SYM LT(_SYM, KC_BSPC)
+#define BSP_NAV LT(_NAV, KC_BSPC)
 // #define DEL_NAV LT(_NAV, KC_DEL)
 
 #include "taps.c"
@@ -61,8 +62,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
             KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,                       KC_Y,    KC_U,    KC_I,       KC_O,    KC_P,
             LG_A,    LA_S,    LS_D,    LC_F,     KC_G,                       KC_H,    RC_J,    RS_K,       RA_L,    RG_SC,
-            KC_Z,    GR_X,    KC_C,    KC_V,     KC_B,                       KC_N,    KC_M,    KC_COMM,    GR_DOT,  GR_SL,
-                                                SPC_NAV, ESC_FUN,           ENT_NUM, BSP_SYM
+            KC_Z,    GR_X,    KC_C,    KC_V,     KC_B,                       KC_N,    KC_M,    KC_COMM,    GR_DOT,  KC_SLSH,
+                                                SPC_FUN, ESC_NUM,           ENT_NUM, BSP_NAV
     ),
     [_SYM] = LAYOUT(
             KC_LCBR,   KC_AMPR,  KC_ASTR,    KC_LPRN,   KC_RPRN,                    _______,  _______,   _______, _______, _______,
@@ -93,11 +94,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             _______,  _______,   _______, _______, _______,                  KC_MUTE,   KC_LEFT,   KC_UP,   KC_RGHT,   KC_QUOT,
             _______,  _______,   _______, _______, _______,                  KC_VOLD,   KC_END,    KC_DOWN, KC_PGDN,   KC_BSLS,
                                                 _______, _______,           _______, _______
+    ),
+    [_SYMA] = LAYOUT(
+            KC_LCBR,   KC_AMPR,  KC_ASTR,    KC_LPRN,   KC_RPRN,                    _______,  _______,   _______, _______, _______,
+            KC_COLN,   KC_DLR,   KC_PERC,    KC_CIRC,   KC_PPLS,                    _______,  _______,   _______, _______, _______,
+            KC_TILD,   KC_EXLM,  KC_AT,      KC_HASH,   KC_PIPE,                    _______,  _______,   _______, _______, _______,
+                                                _______, KC_UNDS,       _______, _______
     )
 };
 
 uint32_t layer_state_set_user(uint32_t state) {
-    return update_tri_layer_state(state, _SYM, _NUM, _NAVA);
+    return update_tri_layer_state(state, _NUM, _NAV, _SYMA);
 };
 
 LEADER_EXTERNS();
