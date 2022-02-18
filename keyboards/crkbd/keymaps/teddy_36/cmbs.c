@@ -24,7 +24,11 @@ enum combos {
     TEH_LEAD,
     ENTT,
     SPC4,
+    COMBO_LENGTH
 };
+
+
+uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
 
 
 const uint16_t PROGMEM jk_combo[] = {RC_J, RS_K, COMBO_END};
@@ -53,7 +57,7 @@ const uint16_t PROGMEM uk_combo[] = {KC_U, RS_K, COMBO_END};
 const uint16_t PROGMEM rg_combo[] = {KC_R, KC_G, COMBO_END};
 const uint16_t PROGMEM m4_combo[] = {KC_M, KC_COMM, GR_DOT, GR_SL, COMBO_END};
 
-combo_t key_combos[COMBO_COUNT] = {
+combo_t key_combos[] = {
     [CPSL] = COMBO(jk_combo, KC_CAPS),
     [CPSLL] = COMBO(df_combo, KC_CAPS),
     [EQL] = COMBO(ui_combo, KC_EQL),

@@ -90,20 +90,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,                       KC_Y,    KC_U,    KC_I,       KC_O,    KC_P,  \
             LG_A,    LA_S,    LS_D,    LC_F,     KC_G,                       KC_H,    RC_J,    RS_K,       RA_L,    RG_SC,  \
             KC_Z,    GR_X,    KC_C,    KC_V,     KC_B,                       KC_N,    KC_M,    KC_COMM,    GR_DOT,  GR_SL, \
-                                      TAB_FUN,  SPC_NAV, ESC_MOS,           ENT_NUM, BSP_SYM, DEL_NAV \
+                                    TAB_FUN,  SPC_NAV, ESC_MOS,           ENT_NUM, BSP_SYM, DEL_NAV \
     ),
 
     [_SYM] = LAYOUT(\
-            KC_LCBR,   KC_AMPR,  KC_ASTR,    KC_LPRN,   KC_RPRN,                    _______,  _______,   _______, _______, _______, \
+            KC_TILD,   KC_AMPR,  KC_ASTR,    KC_LPRN,   KC_RPRN,                    _______,  _______,   _______, _______, _______, \
             KC_COLN,   KC_DLR,   KC_PERC,    KC_CIRC,   KC_PPLS,                    _______,  _______,   _______, _______, _______,  \
-            KC_TILD,   KC_EXLM,  KC_AT,      KC_HASH,   KC_PIPE,                    _______,  _______,   _______, _______, _______,   \
+            KC_LCBR,   KC_EXLM,  KC_AT,      KC_HASH,   KC_PIPE,                    _______,  _______,   _______, _______, _______,   \
                                     KC_LPRN,    KC_RPRN,   KC_UNDS,          _______, _______, _______\
     ),
 
     [_NUM] = LAYOUT(\
-            KC_LBRC,   KC_7,    KC_8,    KC_9,   KC_RBRC,                    _______,  _______,   _______, _______, _______, \
-            KC_SCLN,   KC_4,    KC_5,    KC_6,   KC_EQL,                     _______,  _______,   _______, _______, _______,  \
-            KC_GRV,    KC_1,    KC_2,    KC_3,   KC_BSLS,                    _______,  _______,   _______, _______, _______,   \
+            KC_GRV,   KC_7,  KC_8,  KC_9,  KC_BSLS,                    _______,  _______,   _______, _______, _______, \
+            KC_SCLN,  KC_4,  KC_5,  KC_6,  KC_EQL,                     _______,  _______,   _______, _______, _______,  \
+            KC_LBRC,  KC_1,  KC_2,  KC_3,  KC_RBRC,                    _______,  _______,   _______, _______, _______,   \
                                     _______,    KC_0,   KC_MINS,          _______, _______, _______\
     ),
 
