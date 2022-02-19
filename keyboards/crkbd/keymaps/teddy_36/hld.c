@@ -138,15 +138,16 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case RS_K:
         case RC_J:
         case GR_DOT:
-            return 200;
+            return TAPPING_TERM + 50;
         // case LS_Q:
         // case LC_A:
         // case LA_Z:
         // case RA_SL:
         // case RS_P:
         // case RC_SC:
-        //     return 200;
+        //     return TAPPING_TERM + 50;
         default:
-            return 150;
+            return TAPPING_TERM;
     }
 }
+

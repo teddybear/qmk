@@ -1,7 +1,7 @@
 #pragma once
 
 // Configure the global tapping term (default: 200ms)
-#define TAPPING_TERM 160
+#define TAPPING_TERM 150
 #define TAPPING_TERM_PER_KEY
 // Configure the global tapping term (default: 200ms)
 #define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
