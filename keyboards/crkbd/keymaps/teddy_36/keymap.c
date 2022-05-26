@@ -89,14 +89,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(\
             KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,                       KC_Y,    KC_U,    KC_I,       KC_O,    KC_P,  \
             LG_A,    LA_S,    LS_D,    LC_F,     KC_G,                       KC_H,    RC_J,    RS_K,       RA_L,    RG_SC,  \
-            KC_Z,    GR_X,    KC_C,    KC_V,     KC_B,                       KC_N,    KC_M,    KC_COMM,    GR_DOT,  GR_SL, \
+            KC_Z,    GR_X,    KC_C,    KC_V,     KC_B,                       KC_N,    KC_M,    KC_COMM,    KC_DOT,  GR_SL, \
                                     TAB_FUN,  SPC_MOS, ESC_NUM,           ENT_NUM, BSP_SYM, DEL_NAV \
     ),
 
     [_SYM] = LAYOUT(\
-            KC_TILD,   KC_AMPR,  KC_ASTR,    KC_LPRN,   KC_RPRN,                    _______,  _______,   _______, _______, _______, \
+            KC_TILD,   KC_AMPR,  KC_ASTR,    KC_LPRN,   KC_PIPE,                    _______,  _______,   _______, _______, _______, \
             KC_COLN,   KC_DLR,   KC_PERC,    KC_CIRC,   KC_PPLS,                    _______,  _______,   _______, _______, _______,  \
-            KC_LCBR,   KC_EXLM,  KC_AT,      KC_HASH,   KC_PIPE,                    _______,  _______,   _______, _______, _______,   \
+            KC_LCBR,   KC_EXLM,  KC_AT,      KC_HASH,   KC_RCBR,                    _______,  _______,   _______, _______, _______,   \
                                     KC_LPRN,    KC_RPRN,   KC_UNDS,          _______, _______, _______\
     ),
 
@@ -122,9 +122,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_MOUSE] = LAYOUT(\
-            _______,  _______,   _______, _______, _______,                  KC_BTN1,   KC_WH_R,   _______, KC_WH_U,  _______,       \
+            _______,  _______,   _______, _______, _______,                  KC_BTN2,   KC_WH_U,   _______, KC_WH_R,  _______,       \
             _______,  _______,   _______, _______, _______,                  KC_BTN3,   KC_MS_L,   KC_MS_U, KC_MS_R,  _______,        \
-            _______,  _______,   _______, _______, _______,                  KC_BTN2,   KC_WH_L,   KC_MS_D, KC_WH_D,  _______,       \
+            _______,  _______,   _______, _______, _______,                  KC_BTN1,   KC_WH_D,   KC_MS_D, KC_WH_L,  _______,       \
                                     _______, _______, _______,            _______, _______,  _______ \
     ),
 
