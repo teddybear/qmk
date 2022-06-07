@@ -4,6 +4,8 @@ enum combos {
     YUIO_MENU,
     CPSL,
     CPSLL,
+    CPSL2,
+    CPSLL2,
     EQL,
     SMNS,
     MNS,
@@ -25,11 +27,15 @@ enum combos {
     ENTT,
     SPC4,
     F_ONE,
+    COMBO_LENGTH
 };
 
+uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
 
 const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM jbsp_combo[] = {KC_J, BSP_RSH, COMBO_END};
+const uint16_t PROGMEM spcf_combo[] = {SPC_LSH, KC_F, COMBO_END};
 const uint16_t PROGMEM ui_combo[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM lsemi_combo[] = {KC_L, KC_SCLN, COMBO_END};
 const uint16_t PROGMEM mcomm_combo[] = {KC_M, KC_COMM, COMBO_END};
@@ -55,9 +61,11 @@ const uint16_t PROGMEM rg_combo[] = {KC_R, KC_G, COMBO_END};
 const uint16_t PROGMEM m4_combo[] = {KC_M, KC_COMM, KC_DOT, KC_SLSH, COMBO_END};
 const uint16_t PROGMEM grvq_combo[] = {LGUI_T(KC_MINS), KC_F2, COMBO_END};
 
-combo_t key_combos[COMBO_COUNT] = {
+combo_t key_combos[] = {
     [CPSL] = COMBO(jk_combo, KC_CAPS),
+    [CPSL2] = COMBO(jbsp_combo, KC_CAPS),
     [CPSLL] = COMBO(df_combo, KC_CAPS),
+    [CPSLL2] = COMBO(spcf_combo, KC_CAPS),
     [EQL] = COMBO(ui_combo, KC_EQL),
     [SMNS] = COMBO(lsemi_combo, KC_MINS),
     [MNS] = COMBO(kl_combo, KC_MINS),
