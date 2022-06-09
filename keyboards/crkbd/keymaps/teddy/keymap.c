@@ -120,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
               LGUI_T(KC_NLCK),  KC_PSLS,  KC_7,    KC_8,    KC_9,     KC_MINS,          KC_VOLU, KC_HOME, KC_INS,     KC_PGUP, KC_SLCK, RGUI_T(KC_CAPS), \
               EQL_LCT,          KC_PAST,  KC_4,    KC_5,    KC_6,     KC_PPLS,          KC_MUTE, KC_LEFT, KC_UP,      KC_RGHT, KC_PSCR, APP_RCT, \
               _______,          KC_0,     KC_1,    KC_2,    KC_3,     KC_PCMM,          KC_VOLD, KC_END,  KC_DOWN,    KC_PGDN, KC_PAUS, _______, \
-                                          _______, _______,  _______,          _______, _______, _______\
+                                          _______, KC_0,       _______,          _______, _______, _______\
     ),
 
     /*[_ADJUST] = LAYOUT(\
@@ -131,9 +131,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),*/
 
     [_ADJUST] = LAYOUT(\
-            _______,    RESET,   KC_BTN1, KC_BTN3, KC_BTN2,  XKBMAP,           _______, _______,  _______,   _______, RESET,   _______, \
-            _______,    _______, KC_MS_L, KC_MS_U, KC_MS_R,  KC_WH_U,          KC_LEFT, KC_DOWN,  KC_UP,     KC_RGHT, RGB_HUI, _______, \
-            _______,    TG_FIVE, _______, KC_MS_D, _______,  KC_WH_D,          _______, _______,  _______,   _______, TG_FIVE, _______, \
+            _______,    RESET,   KC_BTN1, KC_BTN3, KC_BTN2,  XKBMAP,           KC_BTN2, KC_WH_U,  _______,   KC_WH_R, _______, RESET,   \
+            _______,    _______, KC_MS_L, KC_MS_U, KC_MS_R,  KC_WH_U,          KC_BTN3, KC_MS_L,  KC_MS_U,   KC_MS_R, _______, RGB_HUI, \
+            _______,    TG_FIVE, KC_WH_L, KC_MS_D, KC_WH_R,  KC_WH_D,          KC_BTN1, KC_WH_D,  KC_MS_D,   KC_WH_L, _______, TG_FIVE, \
                                            _______, SH_TG,   _______,          _______, SH_TG,    _______\
     ),
 
