@@ -120,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
               LGUI_T(KC_NLCK),  KC_PSLS,  KC_7,    KC_8,    KC_9,     KC_MINS,          KC_VOLU, KC_HOME, KC_INS,     KC_PGUP, KC_SLCK, RGUI_T(KC_CAPS), \
               EQL_LCT,          KC_PAST,  KC_4,    KC_5,    KC_6,     KC_PPLS,          KC_MUTE, KC_LEFT, KC_UP,      KC_RGHT, KC_PSCR, APP_RCT, \
               _______,          KC_0,     KC_1,    KC_2,    KC_3,     KC_PCMM,          KC_VOLD, KC_END,  KC_DOWN,    KC_PGDN, KC_PAUS, _______, \
-                                          _______, KC_0,       _______,          _______, _______, _______\
+                                          _______, _______,       _______,          _______, _______, _______\
     ),
 
     /*[_ADJUST] = LAYOUT(\
